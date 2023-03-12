@@ -60,6 +60,44 @@ describe('digits(string) function', function () {
     });
 });
 
+describe('letters(string) function', function () {
+    it('Returns [0, 0] for "2137"', function () {
+        expect(letters('2137')).to.eql([0, 0]);
+    });
+    it('Returns [2, 1] for "aBc"', function () {
+        expect(letters('aBc')).to.eql([2, 1]);
+    });
+    it('Returns [2, 1] for "aBc2137"', function () {
+        expect(letters('aBc2137')).to.eql([2, 1]);
+    });
+    it('Returns [2, 1] for "2137aBc"', function () {
+        expect(letters('2137aBc')).to.eql([2, 1]);
+    });
+    it('Returns [0, 0] for ""', function () {
+        expect(letters('')).to.eql([0, 0]);
+    });
+});
+
+describe('_sum(string) function', function () {
+    totalSum = 0;
+
+    it('Returns 2137 for "2137"', function () {
+        expect(_sum('2137')).to.eql(2137);
+    });
+    it('Returns 2137 for "aBc"', function () {
+        expect(_sum('aBc')).to.eql(2137);
+    });
+    it('Returns 2137 for "aBc2137"', function () {
+        expect(_sum('aBc2137')).to.eql(2137);
+    });
+    it('Returns 4274 for "2137aBc"', function () {
+        expect(_sum('2137aBc')).to.eql(4274);
+    });
+    it('Returns 4274 for ""', function () {
+        expect(_sum('')).to.eql(4274);
+    });
+});
+
 describe('The sum() function', function () {
     it('Returns 4 for 2+2', function () {
         expect(sum(2, 2)).to.equal(4);
