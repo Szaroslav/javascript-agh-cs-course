@@ -124,13 +124,13 @@
         </main>
 
         <div class="container">
-            <form class="row py-4" action="">
-                <select class="form-select" aria-label="Default select example">
+            <form id="xd-form" class="row py-4" action="">
+                <select class="form-select" aria-label="Default select">
                     <option selected value="car">Car</option>
                     <option value="trailer">Trailer</option>
                     <option value="carTrailer">Car + trailer</option>
                   </select>
-                  <input type="button" class="btn btn-primary" value="Sell">
+                  <input type="button" class="btn btn-primary" value="Sell" onclick="handleClick(event)">
             </form>
         </div>
 
@@ -147,6 +147,7 @@
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"
         ></script>
-        <script src="logotype.js"></script>
+        <script src="js/logotype.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
