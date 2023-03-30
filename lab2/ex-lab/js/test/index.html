@@ -11,13 +11,11 @@
         <div id="mocha"></div>
         <script src="https://unpkg.com/chai/chai.js"></script>
         <script src="https://unpkg.com/mocha/mocha.js"></script>
+        <script src="../main.js"></script>
         <script class="mocha-init">
             mocha.setup('bdd');
             mocha.checkLeaks();
         </script>
-        <script src="js/tests.js"></script>
-        <script class="mocha-exec">
-            mocha.run();
-        </script>
+        <script src="main.js"></script>
     </body>
 </html>
