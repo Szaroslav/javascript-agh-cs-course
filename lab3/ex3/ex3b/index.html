@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin=""></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin=""></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+        <link rel="stylesheet" href="main.css">
+        <title>Exercise 3 - React</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            class Main extends React.Component {
+                render() {
+                    return (
+                        <main>
+                            <Green></Green>
+                            <Grey></Grey>
+                        </main>
+                    );
+                }
+            }
+
+            class Green extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.intervalId;
+                    this.state = { counter: 0, running: false };
+                    
+                    // Binding this class to methods, thus we can use reference of the right class (important)
+                    this.startCounter = this.startCounter.bind(this);
+                    this.stopCounter = this.stopCounter.bind(this);
+                }
+
+                startCounter() {
+                    this.intervalId = setInterval(() => { this.setState({ counter: this.state.counter + 1 }) }, 1000);
+                    this.setState({ running: true });
+                }
+
+                stopCounter() {
+                    clearInterval(this.intervalId);
+                    this.setState({ running: false });
+                }
+
+                render() {
+                    return (
+                        <div className="green-container">
+                            <label htmlFor="counter">Counter →</label>
+                            <output id="counter" style={{ fontSize: '4vh', color: 'red' }}>{ this.state.counter }</output>
+                            <br />
+                            <button id="start" className="btn btn-primary" disabled={ !this.state.running ? false : true } onClick={this.startCounter}>Start</button>
+                            <button id="stop" className="btn btn-primary" disabled={ this.state.running ? false : true } onClick={this.stopCounter}>Stop</button>
+                        </div>
+                    );
+                }
+            };
+
+            class Grey extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = { results: null };
+                    
+                    // Binding this class to methods, thus we can use reference of the right class (important)
+                    this.getResults = this.getResults.bind(this);
+                }
+
+                getResults(results) {
+                    this.setState({ results: results });
+                }
+
+                render() {
+                    return (
+                        <div className="grey-container">
+                            <Yellow results={ this.state.results }></Yellow>
+                            <Red propagateResults={ this.getResults }></Red>   
+                        </div>
+                    );
+                }
+            };
+
+            class Yellow extends React.Component {
+                constructor(props) {
+                    super(props);
+                }
+
+                render() {
+                    return (
+                        <div className="yellow-container">
+                            <label htmlFor="result-worker">Result:</label>
+                            <output id="result-worker">{ this.props.results }</output>
+                        </div>
+                    );
+                }
+            };
+
+            class Red extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.INIT_VALUE = 50;
+                    this.state = { iter: this.INIT_VALUE };
+                    
+                    // Binding this class to methods, thus we can use reference of the right class (important)
+                    this.handleInputChange = this.handleInputChange.bind(this);
+                    this.handleResponseFromWorker = this.handleResponseFromWorker.bind(this);
+                    this.calculatePrimes = this.calculatePrimes.bind(this);
+
+                    this.worker = new Worker('worker.js');
+                    this.worker.onmessage = this.handleResponseFromWorker;
+                }
+
+                handleInputChange(e) {
+                    this.setState({ iter: e.target.value });
+                }
+
+                handleResponseFromWorker(res) {
+                    this.props.propagateResults(res.data);
+                }
+
+                calculatePrimes() {
+                    this.worker.postMessage(this.state.iter);
+                }
+
+                render() {
+                    return (
+                        <div className="red-container">
+                            <label htmlFor="iterations-worker">Number of iterations: </label>
+                            <input id="iterations-worker" type="text" value={ this.INIT_VALUE } onChange={ this.handleInputChange } />
+                            <button className="btn btn-primary" onClick={ this.calculatePrimes }>Run calculations</button>
+                        </div>
+                    );
+                }
+            };
+
+            const container = document.getElementById('root');
+            const root = ReactDOM.createRoot(container);
+            root.render(<Main />);
+        </script>
+    </body>
+</html>
