@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin=""></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin=""></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <title>Exercise 3a - DOM4</title>
+    </head>
+    <body>
+        <form onsubmit="event.preventDefault();">
+            <h2>requestAnimationFrame()</h2>
+            <label for="counter">Counter →</label>
+            <output id="counter" style="font-size: 4vh; color: red;">0</output>
+            <br>
+            <button id="start">Start</button>
+            <button id="stop" disabled>Stop</button>
+
+            <!-- ************************************************************** -->
+            <hr>
+
+            <h2>Time-consuming calculations — version 1</h2>
+            <label for="result_main">Result:</label>
+            <output id="result_main">0</output>
+            <br>
+            <label for="iterations_main">Number of iterations:</label>
+            <input id="iterations_main" type="text" value="50">
+            <button id="iterations_main_btn">Run calculations</button>
+
+            <!-- ************************************************************** -->
+
+            <h2>Time-consuming calculations — version 2</h2>
+            <label for="result_worker">Result:</label>
+            <output id="result_worker">0</output>
+            <br>
+            <label for="iterations_worker">Number of iterations:</label>
+            <input id="iterations_worker" type="text" value="50">
+            <button id="iterations_worker_btn">Run calculations</button>
+        </form>
+
+        <script>
+            const worker = new Worker('worker.js')
+
+            var animation;
+            var i = 0;
+
+            worker.onmessage = res => {
+                document.getElementById('result_worker').value = res.data;
+            };
+
+            const calculatePrimesWorker = () => {
+                worker.postMessage(document.getElementById('iterations_worker').value || 50);
+            };
+
+            function calculatePrimes() {
+                const iterations = document.getElementById('iterations_main').value || 50;
+                // Source: https://udn.realityripple.com/docs/Tools/Performance/Scenarios/Intensive_JavaScript
+                var primes = [];
+                for (var i = 0; i < iterations; i++) {
+                var candidate = i * (1000000000 * Math.random());
+                var isPrime = true;
+                for (var c = 2; c <= Math.sqrt(candidate); ++c) {
+                    if (candidate % c === 0) {
+                    // not prime
+                    isPrime = false;
+                    break;
+                    }
+                }
+                if (isPrime) {
+                    primes.push(candidate);
+                }
+                }
+                return primes;
+            };
+            
+            function startAnimation() {
+                document.forms[0].start.disabled = true;
+                document.forms[0].stop.disabled = false;
+                animation = window.requestAnimationFrame(step);
+            }
+            function step() {
+                document.forms[0].counter.value = i++;
+                animation = window.requestAnimationFrame(step);
+            }
+            function stopAnimation() {
+                document.forms[0].start.disabled = false;
+                document.forms[0].stop.disabled = true;
+                window.cancelAnimationFrame(animation)
+            }
+
+            document.getElementById('start').addEventListener('click', startAnimation);
+            document.getElementById('stop').addEventListener('click', stopAnimation);
+            document.getElementById('iterations_main_btn').addEventListener('click', () => 
+                document.getElementById('result_main').value = calculatePrimes()
+            );
+            document.getElementById('iterations_worker_btn').addEventListener('click', calculatePrimesWorker);
+        </script>
+    </body>
+</html>
