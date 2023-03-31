@@ -5,6 +5,7 @@ const vehicleData = [
         manufacturer: 'Audi',
         model: 'A4',
         year: '2023',
+        description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam dignissimos harum dicta debitis excepturi molestias distinctio, minima iure? Eius, quae. Laudantium dolor eveniet iusto deleniti quasi cum, incidunt odio?',
         imageURL: '',
         vehicleType: 'car',
         dates: { rent: null, return: null, sold: null },
@@ -14,6 +15,7 @@ const vehicleData = [
         manufacturer: 'Audi',
         model: 'A6',
         year: '2023',
+        description: '',
         imageURL: '',
         vehicleType: 'car',
         dates: { rent: new Date('2023-01-01'), return: new Date('2023-01-10'), sold: new Date('2023-03-03') },
@@ -23,6 +25,7 @@ const vehicleData = [
         manufacturer: 'Audi',
         model: 'A7',
         year: '2023',
+        description: '',
         imageURL: '',
         vehicleType: 'car',
         dates: { rent: new Date('2023-03-27'), return: null, sold: null },
@@ -32,6 +35,7 @@ const vehicleData = [
         manufacturer: 'Audi',
         model: 'A8',
         year: '2023',
+        description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam dignissimos harum dicta debitis excepturi molestias distinctio, minima iure? Eius, quae. Laudantium dolor eveniet iusto deleniti quasi cum, incidunt odio?',
         imageURL: '',
         vehicleType: 'carTrailer',
         dates: { rent: null, return: null, sold: null },
@@ -41,6 +45,7 @@ const vehicleData = [
         manufacturer: 'Opel',
         model: 'Astra',
         year: '2020',
+        description: '',
         imageURL: '',
         vehicleType: 'carTrailer',
         dates: { rent: null, return: null, sold: null },
@@ -66,7 +71,7 @@ const prettyLog = (message, isSuccess) => {
 const initDatabase = () => {
     const dbRequest = indexedDB.open('carshDB', 7);
 
-    dbRequest.onerror = e => {
+    dbRequest.onerror = () => {
         prettyLog('Cannot open the database', false);
     };
     
@@ -77,6 +82,8 @@ const initDatabase = () => {
     };
 
     dbRequest.onupgradeneeded = e => {
+        console.log('The database has been upgraded');
+
         db = e.target.result;
 
         db.deleteObjectStore(OBJECT_STORE_NAME);
@@ -96,8 +103,20 @@ const getItem = id => {
         const vehicleObjectStore = db.transaction(OBJECT_STORE_NAME).objectStore(OBJECT_STORE_NAME);
 
         return new Promise((resolve, reject) => {
-            const request = vehicleObjectStore.get(id)
-            request.onsuccess = e => resolve(e.target.result)
+            const request = vehicleObjectStore.get(id);
+            request.onsuccess = e => resolve(e.target.result);
+            request.onerror = e => reject(e);
+        });
+    }
+};
+
+const addItem = item => {
+    if (db) {
+        const vehicleObjectStore = db.transaction(OBJECT_STORE_NAME, 'readwrite').objectStore(OBJECT_STORE_NAME);
+
+        return new Promise((resolve, reject) => {
+            const request = vehicleObjectStore.add(item);
+            request.onsuccess = e => resolve();
             request.onerror = e => reject(e);
         });
     }
@@ -222,35 +241,34 @@ const listVehicles = vehicleType => {
     request.onerror = () => prettyLog('Cannot list vehicles', false);
 };
 
-const handleClick = e => {
-    // sellVehicle(document.querySelector('#xd-form .form-select').value);
-}
+const handleFormClick = e => {
+    // console.log(e.target.elements);
+    const elements = e.target.form.elements;
+
+    for (let i = 0; i < elements.length; i++) {
+        const el = elements.item(i);
+        if (el.value !== undefined && el.value === '') {
+            alert('Input is empty');
+            return;
+        }
+    }
+
+    const item = {
+        manufacturer: elements['manufacturer-input'].value,
+        model:  elements['model-input'].value,
+        year:  elements['year-input'].value,
+        description:  elements['description-input'].value,
+        imageURL:  elements['image-url-input'].value,
+        vehicleType:  elements['vehicle-type-select'].value,
+        dates: { rent: null, return: null, sold: null },
+        owner: { firstName: null, lastName: null }
+    };
+
+    console.log(item);
+
+    // addItem(item);
+};
+
+document.getElementById('form-button').addEventListener('click', handleFormClick);
 
 initDatabase();
-
-let result;
-while ((result = prompt('Enter command [1 | 2 | 4] [id | vehicleType], e.g. 2 5')) != null) {
-    result = result.split(' ');
-    const command = parseInt(result[0]);
-    const id = parseInt(result[1]);
-    const arg = result[1];
-    
-    if (isNaN(command)) {
-        prettyLog('Entered command is not a number', false);
-        continue;
-    }
-
-    switch (command) {
-        case 1:
-            rentVehicle(null, id);
-            break;
-        case 2:
-            returnVehicle(id);
-            break;
-        case 4:
-            listVehicles(arg);
-            break;
-        default:
-            prettyLog('Entered command is not a [1 | 2 | 4]', false);
-    }
-}
