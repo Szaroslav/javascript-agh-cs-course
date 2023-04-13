@@ -4,12 +4,12 @@
     list-style-type: none;
 }
 
-.card {
+.my-card {
     animation: card-anim 6s infinite;
     animation-play-state: paused;
 }
 
-.card:hover {
+.my-card:hover {
     animation-play-state: running;
 }
 

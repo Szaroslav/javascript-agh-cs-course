@@ -55,6 +55,7 @@ const vehicleData = [
 
 const OBJECT_STORE_NAME = 'vehicles';
 let db;
+let modelFilter = '';
 
 const prettyLog = (message, isSuccess) => {
     const header = isSuccess ? 'SUCCESS' : 'ERROR';
@@ -68,8 +69,39 @@ const prettyLog = (message, isSuccess) => {
     );
 };
 
+const renderVehicles = () => {
+    const vehicleObjectStore = db.transaction(OBJECT_STORE_NAME).objectStore(OBJECT_STORE_NAME);
+    const list = document.querySelector('.vehicle-list');
+    list.innerHTML = '';
+
+    vehicleObjectStore.openCursor().onsuccess = e => {
+        const cursor = e.target.result;
+
+        if (cursor) {
+            console.log(cursor.value);
+            
+            if (!modelFilter || (new RegExp(modelFilter)).test(cursor.value.model)) {
+                list.innerHTML += `
+                    <li class="col-lg-4 col-md-6 p-2">
+                        <div class="card">
+                            <img src="./images/supra.png" class="card-img-top" alt="${cursor.value.model}" />
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">${cursor.value.model}</h5>
+                                <p class="card-text">${cursor.value.description}</p>
+                                <a href="#" class="btn btn-primary">Read more</a>
+                            </div>
+                        </div>
+                    </li>
+                `;
+            }
+
+            cursor.continue();
+        }
+    };
+};
+
 const initDatabase = () => {
-    const dbRequest = indexedDB.open('carshDB', 7);
+    const dbRequest = indexedDB.open('carshDB', 9);
 
     dbRequest.onerror = () => {
         prettyLog('Cannot open the database', false);
@@ -79,6 +111,8 @@ const initDatabase = () => {
         prettyLog('The database has been open successfully', true);
         
         db = e.target.result;
+        
+        renderVehicles();
     };
 
     dbRequest.onupgradeneeded = e => {
@@ -86,7 +120,8 @@ const initDatabase = () => {
 
         db = e.target.result;
 
-        db.deleteObjectStore(OBJECT_STORE_NAME);
+        if (db.objectStoreNames.contains(OBJECT_STORE_NAME))
+            db.deleteObjectStore(OBJECT_STORE_NAME);
 
         const objectStore = db.createObjectStore(OBJECT_STORE_NAME, { autoIncrement: true });
         objectStore.createIndex('model', 'model', { unique: false });
@@ -266,9 +301,18 @@ const handleFormClick = e => {
 
     console.log(item);
 
-    // addItem(item);
+    addItem(item);
+};
+
+const handleSearch = e => {
+    e.preventDefault();
+
+    console.log(e.target.elements[0].value);
+    modelFilter = e.target.elements[0].value;
+    renderVehicles();
 };
 
 document.getElementById('form-button').addEventListener('click', handleFormClick);
+document.getElementById('vehicle-form').addEventListener('submit', handleSearch)
 
 initDatabase();
