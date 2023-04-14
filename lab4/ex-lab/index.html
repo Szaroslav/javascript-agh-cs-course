@@ -60,67 +60,21 @@
                 </div>
             </div>
         </nav>
+
+        <div class="container">
+            <form id="main-form" class="row py-4" action="">
+                <select name="request_mode" class="form-select">
+                    <option value="rent" selected>Rent</option>
+                    <option value="return">Return</option>
+                    <option value="sell">Sell</option>
+                    <option value="display">Display all</option>
+                </select>
+                <input id="form-button" type="button" class="btn btn-primary" value="Send request">
+            </form>
+        </div>
         
         <main class="container">
-            <ul class="cars-list row p-4">
-                <li class="col-lg-6 col-md-6 p-2">
-                    <div class="my-card card">
-                        <img src="./images/supra.png" class="card-img-top" alt="Toyota Supra" />
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Toyota Supra</h5>
-                            <p class="card-text">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo placeat velit pariatur officia voluptatem aut
-                                laboriosam aspernatur. Facilis ipsam corporis consectetur illo perferendis, nobis dolore assumenda rerum quas nemo
-                                vero?
-                            </p>
-                            <a href="#" class="btn btn-primary">Read more</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-lg-2 col-md-6 p-2">
-                    <div class="my-card card">
-                        <img src="./images/supra.png" class="card-img-top" alt="Toyota Supra" />
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Toyota Supra</h5>
-                            <p class="card-text">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo placeat velit pariatur officia voluptatem aut
-                                laboriosam aspernatur.
-                            </p>
-                            <a href="#" class="btn btn-primary">Read more</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-lg-2"></li>
-                <li class="col-lg-4"></li>
-                <li class="col-lg-4 col-md-6 p-2">
-                    <div class="my-card card">
-                        <img src="./images/supra.png" class="card-img-top" alt="Toyota Supra" />
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Toyota Supra</h5>
-                            <p class="card-text">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo placeat velit pariatur officia voluptatem aut
-                                laboriosam aspernatur. Facilis ipsam corporis consectetur illo perferendis, nobis dolore assumenda rerum quas nemo
-                                vero?
-                            </p>
-                            <a href="#" class="btn btn-primary">Read more</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-lg-4 col-md-6 p-2">
-                    <div class="my-card card">
-                        <img src="./images/supra.png" class="card-img-top" alt="Toyota Supra" />
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Toyota Supra</h5>
-                            <p class="card-text">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo placeat velit pariatur officia voluptatem aut
-                                laboriosam aspernatur. Facilis ipsam corporis consectetur illo perferendis, nobis dolore assumenda rerum quas nemo
-                                vero?
-                            </p>
-                            <a href="#" class="btn btn-primary">Read more</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <ul class="vehicle-list cars-list row p-4"></ul>
         </main>
 
         <div class="container">
@@ -153,16 +107,6 @@
                     </select>
                 </div>
                 <input id="form-button" type="button" class="btn btn-primary" value="Add new">
-            </form>
-        </div>
-
-        <div class="container">
-            <ul class="vehicle-list cars-list row p-4">
-
-            </ul>
-            <form id="vehicle-form" class="d-flex" role="search" action="">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
 

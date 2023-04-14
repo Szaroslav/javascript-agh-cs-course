@@ -45,7 +45,6 @@ function requestListener(request, response) {
         const mode = url.searchParams.get('mode');
         const commandList = url.searchParams.get('command-list');
         let output = '';
-
         
         if (mode === 'sync') {
             output = `Current counter state: ${counter.countSync()}`;
@@ -128,8 +127,6 @@ function requestListener(request, response) {
 
             response.end();
         }
-        
-
        
     }
     else {

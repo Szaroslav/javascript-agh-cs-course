@@ -77,9 +77,7 @@ const renderVehicles = () => {
     vehicleObjectStore.openCursor().onsuccess = e => {
         const cursor = e.target.result;
 
-        if (cursor) {
-            console.log(cursor.value);
-            
+        if (cursor) {       
             if (!modelFilter || (new RegExp(modelFilter)).test(cursor.value.model)) {
                 list.innerHTML += `
                     <li class="col-lg-4 col-md-6 p-2">
@@ -301,13 +299,12 @@ const handleFormClick = e => {
 
     console.log(item);
 
-    addItem(item);
+    addItem(item).then(() => renderVehicles());
 };
 
 const handleSearch = e => {
     e.preventDefault();
 
-    console.log(e.target.elements[0].value);
     modelFilter = e.target.elements[0].value;
     renderVehicles();
 };
