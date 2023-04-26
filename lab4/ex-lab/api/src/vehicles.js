@@ -6,6 +6,8 @@ const vehicleData = [
         description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam dignissimos harum dicta debitis excepturi molestias distinctio, minima iure? Eius, quae. Laudantium dolor eveniet iusto deleniti quasi cum, incidunt odio?',
         imageURL: '',
         vehicleType: 'car',
+        sold: false,
+        rented: false
         // dates: { rent: null, return: null, sold: null },
         // owner: { firstName: null, lastName: null }
     },
@@ -16,6 +18,8 @@ const vehicleData = [
         description: '',
         imageURL: '',
         vehicleType: 'car',
+        sold: false,
+        rented: false
         // dates: { rent: new Date('2023-01-01'), return: new Date('2023-01-10'), sold: new Date('2023-03-03') },
         // owner: { firstName: null, lastName: null }
     },
@@ -26,6 +30,8 @@ const vehicleData = [
         description: '',
         imageURL: '',
         vehicleType: 'car',
+        sold: false,
+        rented: false
         // dates: { rent: new Date('2023-03-27'), return: null, sold: null },
         // owner: { firstName: null, lastName: null }
     },
@@ -36,6 +42,8 @@ const vehicleData = [
         description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam dignissimos harum dicta debitis excepturi molestias distinctio, minima iure? Eius, quae. Laudantium dolor eveniet iusto deleniti quasi cum, incidunt odio?',
         imageURL: '',
         vehicleType: 'carTrailer',
+        sold: false,
+        rented: false
         // dates: { rent: null, return: null, sold: null },
         // owner: { firstName: null, lastName: null }
     },
@@ -46,6 +54,8 @@ const vehicleData = [
         description: '',
         imageURL: '',
         vehicleType: 'carTrailer',
+        sold: false,
+        rented: false
         // dates: { rent: null, return: null, sold: null },
         // owner: { firstName: 'Janusz', lastName: 'Kowalski' }
     },
@@ -56,6 +66,8 @@ const vehicleData = [
         description: 'Lorem ipsum. 2000 for the win!',
         imageURL: '',
         vehicleType: 'car',
+        sold: false,
+        rented: false
         // dates: { rent: null, return: null, sold: null },
         // owner: { firstName: 'Janusz', lastName: 'Kowalski' }
     }

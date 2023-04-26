@@ -16,7 +16,7 @@ const prettyLog = (message, isSuccess) => {
 };
 
 const renderVehicles = async () => {
-    const vehicles = await fetch(`${API_URL}vehicles`).then(res => res.json());
+    const vehicles = await fetch(`${API_URL}vehicle`).then(res => res.json());
     const list = document.querySelector('.vehicle-list');
     list.innerHTML = '';
 
