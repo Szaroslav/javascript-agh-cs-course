@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 /* ************************************************ */
 console.log(path.join(__dirname, '../public'))
 app.use(morgan('dev')); // Place an HTTP request recorder on the stack — each request will be logged in the console in 'dev' format
-app.use(express.static(path.join(__dirname, '../public'))); // Place the built-in middleware 'express.static' — static content (files .css, .js, .jpg, etc.) will be provided from the 'public' directory
+app.use(express.static(path.join(__dirname, '/public'))); // Place the built-in middleware 'express.static' — static content (files .css, .js, .jpg, etc.) will be provided from the 'public' directory
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
