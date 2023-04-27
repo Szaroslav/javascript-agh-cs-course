@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        title Second Express application
+    body
+        main
+            h1 Second Express application
+            form(method='POST' action='/')
+                label(for='name') Give your name
+                input(name='name')
+                br
+                input(type='submit')
+                input(type='reset')
+            img(src='http://localhost:8000/images/honey-badger.jpg' alt='Beautiful view' style='width: 512px')
+            table
+                thead
+                    th Imię
+                    th Nazwisko
+                each student in students
+                    tr
+                        td= student.fname
+                        td= student.lname
