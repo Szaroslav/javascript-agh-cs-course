@@ -62,14 +62,14 @@
         </nav>
 
         <div class="container">
-            <form id="main-form" class="row py-4" action="">
-                <select name="request_mode" class="form-select">
+            <form id="request-form" class="row py-4">
+                <select id="request-mode" name="request_mode" class="form-select">
                     <option value="rent" selected>Rent</option>
                     <option value="return">Return</option>
                     <option value="sell">Sell</option>
                     <option value="display">Display all</option>
                 </select>
-                <input id="form-button" type="button" class="btn btn-primary" value="Send request">
+                <input id="request-button" type="button" class="btn btn-primary" value="Send request">
             </form>
         </div>
         
@@ -78,7 +78,7 @@
         </main>
 
         <div class="container">
-            <form id="xd-form" class="row py-4" action="">
+            <form id="add-vehicle-form" class="row py-4">
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text">Manufacturer</span>
                     <input id="manufacturer-input" type="text" class="form-control" aria-label="Manufacturer">

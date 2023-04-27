@@ -1,6 +1,7 @@
 'use strict';
 
-const API_URL = 'http://localhost:8000/';
+const API_URL = 'http://localhost:8000';
+const list = document.querySelector('.vehicle-list');
 let modelFilter = '';
 
 const prettyLog = (message, isSuccess) => {
@@ -9,56 +10,87 @@ const prettyLog = (message, isSuccess) => {
     const f = isSuccess ? console.log : console.error;
 
     f(
-        `%c[${header}] %c${message}`,
+        `%c[${header}]`,
         `color: ${color}; font-weight: bold`,
-        `color: inherit; font-weight: normal`
+        message
     );
 };
 
-const renderVehicles = async () => {
-    const vehicles = await fetch(`${API_URL}vehicle`).then(res => res.json());
-    const list = document.querySelector('.vehicle-list');
-    list.innerHTML = '';
-
-    vehicles.forEach(vehicle => { 
-        if (!modelFilter || (new RegExp(modelFilter)).test(vehicle.model)) {
-            list.innerHTML += `
-                <li class="col-lg-4 col-md-6 p-2">
-                    <div class="card">
-                        <img src="./images/supra.png" class="card-img-top" alt="${vehicle.model}" />
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">${vehicle.model}</h5>
-                            <p class="card-text">${vehicle.description}</p>
-                            <a href="#" class="btn btn-primary">Read more</a>
-                        </div>
+const renderVehicle = data => {
+    if (data && (!modelFilter || (new RegExp(modelFilter)).test(data.model))) {
+        list.innerHTML += `
+            <li class="col-lg-4 col-md-6 p-2">
+                <div class="card">
+                    <img src="./images/supra.png" class="card-img-top" alt="${data.model}" />
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">${data.model}</h5>
+                        <p class="card-text">${data.description}</p>
+                        <a href="#" class="btn btn-primary">Read more</a>
                     </div>
-                </li>
-            `;
-        }
-    });
+                </div>
+            </li>
+        `;
+    }
+};
+
+const renderVehicles = async () => {
+    const vehicles = await fetch(`${API_URL}/vehicle`).then(res => res.json());
+    list.innerHTML = '';
+    vehicles.forEach(vehicle => renderVehicle(vehicle));
 };
 
 const getItem = id => {
     
 };
 
-const addItem = item => {
-    
+const addItem = async item => {
+    const addedVehicle = await fetch(`${API_URL}/vehicle`, {
+        method: 'POST',
+        body: JSON.stringify(item)
+    })
+        .then(res => res.json())
+        .catch(err => prettyLog(err, false));
+
+    if (addedVehicle)
+        prettyLog(addedVehicle, true);
+
+    return addedVehicle;
 };
 
-const rentVehicle = (owner, id) => {
+const rentVehicle = async () => {
+    const rentedVehicle = await fetch(`${API_URL}/vehicle/rent`)
+        .then(res => res.json())
+        .catch(err => prettyLog(err, false));
+
+    if (rentedVehicle)
+        prettyLog(rentedVehicle, true);
+
+    return rentedVehicle;
 };
 
-const returnVehicle = id => {
-    
+const returnVehicle = async () => {
+    const returnedVehicle = await fetch(`${API_URL}/vehicle/return`)
+        .then(res => res.json())
+        .catch(err => prettyLog(err, false));
+
+    if (returnedVehicle)
+        prettyLog(returnedVehicle, true);
+
+    return returnedVehicle;
 };
 
-const sellVehicle = (owner, id) => {
-    
+const sellVehicle = async () => {
+    const soldVehicle = await fetch(`${API_URL}/vehicle/sold`)
+        .then(res => res.json())
+        .catch(err => prettyLog(err, false));
+
+    if (soldVehicle)
+        prettyLog(soldVehicle, true);
+
+    return soldVehicle;
 };
 
 const handleFormClick = e => {
-    // console.log(e.target.elements);
     const elements = e.target.form.elements;
 
     for (let i = 0; i < elements.length; i++) {
@@ -76,13 +108,15 @@ const handleFormClick = e => {
         description:  elements['description-input'].value,
         imageURL:  elements['image-url-input'].value,
         vehicleType:  elements['vehicle-type-select'].value,
-        dates: { rent: null, return: null, sold: null },
-        owner: { firstName: null, lastName: null }
+        sold: false,
+        rented: false
+        // dates: { rent: null, return: null, sold: null },
+        // owner: { firstName: null, lastName: null }
     };
 
-    console.log(item);
+    addItem(item).then(res => renderVehicle(res));
 
-    addItem(item).then(() => renderVehicles());
+    return false;
 };
 
 const handleSearch = e => {
@@ -93,6 +127,25 @@ const handleSearch = e => {
 };
 
 document.getElementById('form-button').addEventListener('click', handleFormClick);
+document.getElementById('request-button').addEventListener('click', e => {
+    const requestType = e.target.form.elements['request-mode'].value;
+    console.log(requestType);
+
+    switch (requestType) {
+        case 'rent':
+            rentVehicle();
+            break;
+        case 'return':
+            returnVehicle();
+            break;
+        case 'sell':
+            sellVehicle();
+            break;
+        case 'display':
+            renderVehicles();
+            break;
+    }
+});
 // document.getElementById('vehicle-form').addEventListener('submit', handleSearch);
 
 renderVehicles();
