@@ -13,6 +13,7 @@ const students = [
           lname: 'Nowak'
     },
 ];
+const locals = { students: students };
 
 
 /* *************************** */
@@ -32,7 +33,7 @@ app.use(express.static(__dirname + '/public'));
 /* "Routes" */
 /* ******** */
 app.get('/', function (request, response) {
-    response.render('index', { students: students }); // Render the 'index' view
+    response.render('index', locals); // Render the 'index' view
 });
 /* ************************************************ */
 app.listen(8000, function () {
