@@ -44,7 +44,7 @@ app.get('/', function (request, response) {
                     <input type="submit">
                     <input type="reset">
                 </form>
-                <img src="http://localhost:8000/images/kiara.png" alt="Beautiful views">
+                <img src="http://localhost:8000/images/honey-badger.jpg" alt="Beautiful view" style="max-width: 100%">
             </main>
         </body>
         </html>    
