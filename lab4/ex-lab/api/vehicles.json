@@ -7,7 +7,7 @@
         "imageURL": "",
         "vehicleType": "car",
         "sold": false,
-        "rented": true
+        "rented": false
     },
     {
         "manufacturer": "Audi",
@@ -17,7 +17,7 @@
         "imageURL": "",
         "vehicleType": "car",
         "sold": false,
-        "rented": true
+        "rented": false
     },
     {
         "manufacturer": "Audi",
@@ -60,11 +60,11 @@
         "rented": false
     },
     {
-        "manufacturer": "Volkswagen",
-        "model": "Passat",
-        "year": "2005",
-        "description": "Lorem ipsum.",
-        "imageURL": "passeratti.png",
+        "manufacturer": "Toyota",
+        "model": "Supra",
+        "year": "2010",
+        "description": "das",
+        "imageURL": "dsa",
         "vehicleType": "car",
         "sold": false,
         "rented": false

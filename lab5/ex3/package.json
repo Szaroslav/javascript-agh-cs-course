@@ -24,7 +24,7 @@
   },
   "contributors": [],
   "scripts": {
-    "start": "node --watch src/app3.js",
+    "start": "node src/app3.js",
     "dev": "",
     "test": "npx mocha"
   },
