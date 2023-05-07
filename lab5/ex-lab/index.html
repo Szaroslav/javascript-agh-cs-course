@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./main.css" />
+        <title>Carsh</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <canvas id="canvas" width="130" height="110">
+                        It looks like your browser does not support the "canvas" element
+                    </canvas>
+                </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbar"
+                    aria-controls="navbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Vehicles</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Toyota Supra</a></li>
+                                <li><a class="dropdown-item" href="#">Toyota Supra</a></li>
+                                <li><a class="dropdown-item" href="#">Running in the 90s</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <form id="request-form" class="row py-4">
+                <select id="request-mode" name="request_mode" class="form-select">
+                    <option value="rent" selected>Rent</option>
+                    <option value="return">Return</option>
+                    <option value="sell">Sell</option>
+                    <option value="display">Display all</option>
+                </select>
+                <input id="request-button" type="button" class="btn btn-primary" value="Send request">
+            </form>
+        </div>
+        
+        <main class="container">
+            <ul class="vehicle-list cars-list row p-4"></ul>
+        </main>
+
+        <div class="container">
+            <form id="add-vehicle-form" class="row py-4">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Manufacturer</span>
+                    <input id="manufacturer-input" type="text" class="form-control" aria-label="Manufacturer">
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Model</span>
+                    <input id="model-input" type="text" class="form-control" aria-label="Model">
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Year</span>
+                    <input id="year-input" type="text" class="form-control" aria-label="Year">
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Description</span>
+                    <input id="description-input" type="text" class="form-control" aria-label="Description">
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Vehicle preview image URL</span>
+                    <input id="image-url-input" type="text" class="form-control" aria-label="Vehicle preview image URL">
+                </div>
+                <div class="input-group flex-nowrap">
+                    <select id="vehicle-type-select" class="form-select" aria-label="Default select">
+                        <option selected value="car">Car</option>
+                        <option value="trailer">Trailer</option>
+                        <option value="carTrailer">Car + trailer</option>
+                    </select>
+                </div>
+                <input id="form-button" type="button" class="btn btn-primary" value="Add new">
+            </form>
+        </div>
+
+        <footer class="footer">
+            <div class="container p-3">
+                <p class="fs-5 m-0">Made by Szary</p>
+            </div>
+        </footer>
+
+        <script src="https://unpkg.com/chai/chai.js"></script>
+        <script src="https://unpkg.com/mocha/mocha.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"
+        ></script>
+        <script src="js/logotype.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
