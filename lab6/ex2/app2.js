@@ -3,27 +3,30 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { encodeXML } from 'entities';
+import cors from 'cors';
 
-const app = express();
+const app1 = express();
+const app2 = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'pug');
-app.locals.pretty = app.get('env') === 'development';
+app1.set('views', __dirname + '/views');
+app1.set('view engine', 'pug');
+app1.use(cors());
+app1.locals.pretty = app1.get('env') === 'development';
 /* ************************************************ */
-app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: false }));
+app2.use(morgan('dev'));
+app2.use(express.urlencoded({ extended: false }));
+app2.use(cors())
 /* ************************************************ */
-app.get('/', function (request, response) {
+app1.get('/', function (request, response) {
     response.render('index');
 });
 
-app.all('/submit', function (req, res) {
-    let name = req.method === 'GET' ? req.query.name : req.body.name;
-    // console.log(req.body);
-    
+app2.all('/submit', function (req, res) {
     // Return the greeting in the format preferred by the WWW client
+    let name = req.method === 'GET' ? req.query.name : req.body.name;
+    
     switch (req.accepts(['html', 'text', 'json', 'xml'])) {
         case 'json':
             // Send the JSON greeting
@@ -48,7 +51,10 @@ app.all('/submit', function (req, res) {
     }
 });
 /* ************************************************ */
-app.listen(8000, function () {
+app2.listen(8000, function () {
     console.log('The server was started on port 8000');
+});
+app1.listen(8001, function () {
+    console.log('The server was started on port 8001');
     console.log('To stop the server, press "CTRL + C"');
 });
