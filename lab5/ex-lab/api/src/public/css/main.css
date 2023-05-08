@@ -13,6 +13,14 @@
     animation-play-state: running;
 }
 
+#add-vehicle-form {
+    gap: .5rem;
+}
+
+#add-vehicle-form .input-group-text {
+    width: 230px;
+}
+
 canvas {
     height: 48px;
 }
