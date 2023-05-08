@@ -1,5 +1,4 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const vehicles = require('./vehicles');
 
 const DATABASE_NAME = 'js-course';
 const COLLECTION_NAME = 'Vehicles';
