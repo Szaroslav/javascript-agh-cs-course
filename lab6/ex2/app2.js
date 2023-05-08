@@ -16,6 +16,7 @@ app1.use(cors());
 app1.locals.pretty = app1.get('env') === 'development';
 /* ************************************************ */
 app2.use(morgan('dev'));
+app2.use(express.json());
 app2.use(express.urlencoded({ extended: false }));
 app2.use(cors())
 /* ************************************************ */
