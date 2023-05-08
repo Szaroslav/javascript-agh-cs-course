@@ -58,8 +58,20 @@ html(lang='en')
                         console.log(`HTTP method ⟶\t\t${http_method}\nResponse type ⟶\t${response_type}\nInput data ⟶\t\t${name}`);
                         console.log('Response', xhr.response);
                         console.groupEnd();
-                        if(show_alert)
-                            window.alert(xhr.response);
+                        if(show_alert) {
+                            let response = xhr.response;
+                            switch (response_type) {
+                                case 'json':
+                                    response = JSON.stringify(response);
+                                    break;
+                                case 'document':
+                                    const serializer = new XMLSerializer();
+                                    response = serializer.serializeToString(response);
+                                    break;
+                            }
+
+                            window.alert(response);
+                        }
                         else { 
                             results.set(`ajax ${http_method} ${response_type}`, xhr.response);
                             dispatchEvent(received); 

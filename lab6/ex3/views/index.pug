@@ -69,9 +69,9 @@ html(lang='en')
                                     response = serializer.serializeToString(response);
                                     break;
                             }
-
+                            
                             document.getElementById('response-container').textContent = response;
-                        }                 
+                        }
                         else { 
                             results.set(`ajax ${http_method} ${response_type}`, xhr.response);
                             dispatchEvent(received); 
@@ -94,7 +94,7 @@ html(lang='en')
                 // What is the acceptable data type - the server part should return data of the given type
                 // Default value: '*/*'
                 //****************************************************************************************
-                switch(response_type){
+                switch (response_type){
                     case 'json':
                         xhr.setRequestHeader('Accept', 'application/json');
                         break;
@@ -114,7 +114,7 @@ html(lang='en')
             /* response_type ∈ ["text", "json", "xml"]                                            */ 
             /* name - Contents of the form's text box - data that needs to be sent asynchronously */
             /**************************************************************************************/
-            function requestFetchAPI(http_method, response_type, name, show_alert=false) {
+            async function requestFetchAPI(http_method, response_type, name, show_alert=false) {
                 let accept = '*/*';
 
                 switch(response_type){
@@ -125,37 +125,30 @@ html(lang='en')
                         accept = 'application/xml';
                         break;
                 }
-                console.log(http_method === 'POST' ? JSON.stringify({ name: name }) : null);
-                fetch(`http://localhost:8000/submit${http_method === 'GET' ? `?name=${encodeURI(name)}` : ''}`, {
-                    method: http_method,
-                    headers: {
-                        //****************************************************************************************
-                        // What is the acceptable data type—the server part should return data of the given type
-                        //****************************************************************************************
-                        'Accept': accept,
-                        'Content-Type': 'application/json;charset=UTF-8'
-                    },
-                    body: http_method === 'POST' ? JSON.stringify({ name: name }) : null
-                }) // Execution of the (asynchronous) query to the web server — a promise is created
-                .then(function (response) { // if the promise is fulfilled
+                
+                try {
+                    const response = await fetch(`http://localhost:8000/submit${http_method === 'GET' ? `?name=${encodeURI(name)}` : ''}`, {
+                        method: http_method,
+                        headers: {
+                            //****************************************************************************************
+                            // What is the acceptable data type—the server part should return data of the given type
+                            //****************************************************************************************
+                            'Accept': accept,
+                            'Content-Type': 'application/json;charset=UTF-8'
+                        },
+                        body: http_method === 'POST' ? JSON.stringify({ name: name }) : null
+                    })
+
                     if (!response.ok)
                         throw Error(response.statusText);
 
                     console.group('Fetch API');
                     console.log(`HTTP method ⟶\t\t${http_method}\nResponse type ⟶\t${response_type}\nInput data ⟶\t\t${name}`);
 
-                    if (!response.headers.get('content-type')?.includes('application/json')) {
-                        // If the received data is plain text or an XML document
-                        return response.text(); 
-                    }
-                    else {
-                        //If the received data is a JSON document
-                        return response.json();
-                    }
-                })
-                .then(result => {
+                    const result = !response.headers.get('content-type')?.includes('application/json') ? await response.text() : await response.json();
                     console.log(result);
-                    console.groupEnd();   
+                    console.groupEnd();
+
                     if(show_alert) {
                         document.getElementById('response-container').textContent = (typeof result !== 'object' ? result : JSON.stringify(result));
                     }
@@ -163,11 +156,12 @@ html(lang='en')
                         results.set(`fetch ${http_method} ${response_type}`, result);
                         dispatchEvent(received);
                     }
-                })
-                .catch(function (error) { // if the promise is rejected
-                    window.alert(error);
-                });
+                }
+                catch(error) {
+                    console.error(error);
+                }
             }
+
         script(src="https://unpkg.com/chai/chai.js")
         script(src="https://unpkg.com/mocha/mocha.js") 
     body
