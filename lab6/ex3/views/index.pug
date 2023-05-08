@@ -18,6 +18,35 @@ html(lang='en')
                 color: white;import express from 'express';
             }
         script.
+            function getTime(europeCity) {
+                return new Promise(async (resolve, reject) => {
+                    try {
+                        const response = await fetch(`http://worldtimeapi.org/api/timezone/Europe/${europeCity}`);
+
+                        if (!response.ok)
+                            throw new Error(response.statusText);
+                        
+                        resolve(await response.json());
+                    }
+                    catch(error) {
+                        console.error(error);
+                        reject(error);
+                    }
+                });
+            }
+
+            async function handleWeather() {
+                try {
+                    const city = document.getElementById('city').value.trim();
+                    const time = await getTime(city);
+                    const localTime = time.datetime.match(/\d+:\d+:\d+/g);
+                    document.getElementById('response-container').textContent = localTime;
+                }
+                catch(error) {
+                    document.getElementById('response-container').textContent = error;
+                }
+            }
+
             /**************************************************************************************/
             /* Function that retrieves the content of one of the selected text fields of the form */
             /**************************************************************************************/
@@ -69,7 +98,7 @@ html(lang='en')
                                     response = serializer.serializeToString(response);
                                     break;
                             }
-                            
+
                             document.getElementById('response-container').textContent = response;
                         }
                         else { 
@@ -205,6 +234,8 @@ html(lang='en')
                         td
                             each type in ["text", "json", "xml"]
                                 button(onclick=`console.clear() ; requestFetchAPI("${method}","${type}", getName('${method}'), true)`) #{type}
+            input(id='city' name='city' type='text' placeholder='City')
+            button(onclick='handleWeather()') Show weather
             div(id='response-container')
         h1 Unit tests
         button(onclick='window.location.reload();') Restart
