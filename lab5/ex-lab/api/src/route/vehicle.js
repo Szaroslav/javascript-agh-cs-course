@@ -1,138 +1,75 @@
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { getItems, getItem, addItem, updateItem } = require('../conn');
 
 const router = express.Router();
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
+// router.use(express.json());
+// router.use(express.urlencoded({ extended: true }));
 
-const DATABASE_NAME = 'js-course';
-const COLLECTION_NAME = 'Vehicles';
-const URI = 'mongodb+srv://szary1:zfQNk1o0h2rMOfU7@wdai-travel-app.m5kjkoq.mongodb.net/?retryWrites=true&w=majority';
-const client = new MongoClient(URI, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true
-    }
-});
-
-router.use(async (req, res, next) => {
-    res.locals.header = {
-        'Access-Control-Allow-Origin': '*'
+const rentOrReturn = async (rent, res) => {
+    const logical_function = (rent ? v => !v : v => v);
+    const query = {
+        rented: logical_function(true),
+        sold: false
     };
+    const availableVehicle = await getItem(query);
 
-    try {
-        await client.connect();
-        const database = await client.db(DATABASE_NAME);
-        res.locals.collection = await database.collection(COLLECTION_NAME);
-        console.log("Successfully connected to MongoDB!");
-
-        next();
+    if (availableVehicle) {
+        await updateItem(query, {
+            $set: { rented: logical_function(false) }
+        });
+        return { status: 200 };
     }
-    finally {
-        await client.close();
+    else {
+        return { status: 404 };
     }
-});
-
+};
 
 router.get('/', async (req, res) => {
     res.set(res.locals.header);
-    console.log(await res.locals.collection.find({}));
-    res.status(200).json(vehicles);
+    res.status(200).json(await getItems());
 });
 
-router.post('/', (req, res) => {
-    asynchrous = true;
-    let reqBody;
+router.post('/', async (req, res) => {
+    res.set(res.locals.header);
 
-    console.log(req.body);
-
-    // req.on('data', data => {
-    //     reqBody = JSON.parse(data.toString('utf8'));
-    //     vehicles.push(reqBody);
-    // });
-
-    // req.on('end', () => {
-    //     header['Content-Type'] = 'application/json; charset=utf-8';
-        
-    //     fs.writeFileSync('./vehicles.json', JSON.stringify(vehicles, null, 4));
-
-    //     res.writeHead(200, header);
-    //     res.write(JSON.stringify(vehicles[vehicles.length - 1]));
-    //     res.end();
-    // });
-    // req.on('error', err => {
-    //     console.log(err);
-    //     res.writeHead(400, header);
-    //     res.end();
-    // });
+    if (!req.body || Object.keys(req.body).length === 0) {
+        console.error('Invalid request body');
+        res.status(400).send();
+    }
+    else {
+        await addItem(req.body);
+        res.status(200).json(req.body);
+    }
 });
 
-router.get('/rent', (req, res) => {
-
+router.get('/rent', async (req, res) => {
+    const { status } = await rentOrReturn(true, res);
+    res.set(res.locals.header);
+    res.status(status).send();
 });
 
-router.get('/return', (req, res) => {
-
+router.get('/return', async (req, res) => {
+    const { status } = await rentOrReturn(false, res);
+    res.set(res.locals.header);
+    res.status(status).send();
 });
 
-router.get('/sell', (req, res) => {
+router.get('/sell', async (req, res) => {
+    const query = {
+        rented: false,
+        sold: false
+    };
+    const availableVehicle = await getItem(query);
 
+    if (availableVehicle) {
+        await updateItem(query, {
+            $set: { sold: true }
+        });
+        res.status(200).send();
+    }
+    else {
+        res.status(404).send();
+    }
 });
-
-// else if (url.pathname === '/vehicle' && req.method === 'POST') {
-//     asynchrous = true;
-//     let reqBody;
-
-//     req.on('data', data => {
-//         reqBody = JSON.parse(data.toString('utf8'));
-//         vehicles.push(reqBody);
-//     });
-
-//     req.on('end', () => {
-//         header['Content-Type'] = 'application/json; charset=utf-8';
-        
-//         fs.writeFileSync('./vehicles.json', JSON.stringify(vehicles, null, 4));
-
-//         res.writeHead(200, header);
-//         res.write(JSON.stringify(vehicles[vehicles.length - 1]));
-//         res.end();
-//     });
-//     req.on('error', err => {
-//         console.log(err);
-//         res.writeHead(400, header);
-//         res.end();
-//     });
-// }
-// else if ((url.pathname === '/vehicle/rent' || url.pathname === '/vehicle/return') && req.method === 'GET') {
-//     const logical_function = (url.pathname === '/vehicle/rent' ? bool => !bool : bool => bool);
-//     const availableVehicles = vehicles.filter(vehicle => logical_function(vehicle.rented));
-
-//     if (availableVehicles.length > 0) {
-//         header['Content-Type'] = 'application/json; charset=utf-8';
-//         res.writeHead(200, header);
-//         availableVehicles[0].rented = logical_function(false);
-//         res.write(JSON.stringify(availableVehicles[0]));
-//     }
-//     else {
-//         res.writeHead(404, header);
-//     }
-// }
-// else if (url.pathname === '/vehicle/sell' && req.method === 'GET') {
-//     const availableVehicles = vehicles.filter(vehicle => !vehicle.sold && !vehicle.rented);
-
-//     if (availableVehicles.length > 0) {
-//         header['Content-Type'] = 'application/json; charset=utf-8';
-//         res.writeHead(200, header);
-//         availableVehicles[0].sold = true;
-//         res.write(JSON.stringify(availableVehicles[0]));
-//     }
-//     else {
-//         res.writeHead(404, header);
-//     }
-// }
-// else {
-//     res.writeHead(404, header);
-// }
 
 module.exports = router;
