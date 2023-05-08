@@ -46,6 +46,7 @@ const getItem = id => {
 const addItem = async item => {
     const addedVehicle = await fetch(`${API_URL}/vehicle`, {
         method: 'POST',
+        mode: 'cors',
         body: JSON.stringify(item)
     })
         .then(res => res.json())
