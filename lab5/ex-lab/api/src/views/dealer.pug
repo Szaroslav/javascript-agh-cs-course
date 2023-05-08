@@ -1,0 +1,21 @@
+doctype html
+html
+    include ./head.pug
+    body
+        include ./nav.pug
+        div(class='container')
+            form(id='add-vehicle-form' class='row py-4')
+                each value in addVehicleTextInputs
+                    div(class='input-group flex-nowrap')
+                        span(class='input-group-text')= value
+                        input(id=`${value.toLowerCase()}-input` class='form-control' type='text' aria-label=value)
+                div(class='input-group flex-nowrap')
+                    span(class='input-group-text') Vehicle preview image URL
+                    input(id='image-url-input' class='form-control' type='text' aria-label='Vehicle preview image URL')
+                div(class='input-group flex-nowrap')
+                    select(id='vehicle-type-select' class='form-select' aria-label='Car type select')
+                        option(value='car' selected) Car
+                        option(value='trailer') Trailer
+                        option(value='carTrailer') Car + trailer
+                input(id='form-button' class='btn btn-primary' type='button' value='Add new')
+        include ./body-scripts.pug

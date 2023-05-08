@@ -31,6 +31,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     res.set(res.locals.header);
+    console.log(req.body);
 
     if (!req.body || Object.keys(req.body).length === 0) {
         console.error('Invalid request body');

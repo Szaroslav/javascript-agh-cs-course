@@ -24,6 +24,12 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
+app.get('/dealer', (req, res) => {
+    res.render('dealer', {
+        addVehicleTextInputs: [ 'Manufacturer', 'Model', 'Year', 'Description' ]
+    });
+});
+
 app.listen(8000, () => {
     console.log('The server was started on port 8000');
     console.log('The server URL: http://localhost:8000/');
