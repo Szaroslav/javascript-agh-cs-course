@@ -17,6 +17,9 @@ const prettyLog = (message, isSuccess) => {
 };
 
 const renderVehicle = data => {
+    if (!list)
+        return;
+
     if (data && (!modelFilter || (new RegExp(modelFilter)).test(data.model))) {
         list.innerHTML += `
             <li class="col-lg-4 col-md-6 p-2">
@@ -129,26 +132,27 @@ const handleSearch = e => {
     renderVehicles();
 };
 
-document.getElementById('form-button').addEventListener('click', handleFormClick);
-document.getElementById('request-button').addEventListener('click', e => {
-    const requestType = e.target.form.elements['request-mode'].value;
-    console.log(requestType);
+if (document.getElementById('form-button'))
+    document.getElementById('form-button').addEventListener('click', handleFormClick);
+if (document.getElementById('request-button'))
+    document.getElementById('request-button').addEventListener('click', e => {
+        const requestType = e.target.form.elements['request-mode'].value;
+        console.log(requestType);
 
-    switch (requestType) {
-        case 'rent':
-            rentVehicle();
-            break;
-        case 'return':
-            returnVehicle();
-            break;
-        case 'sell':
-            sellVehicle();
-            break;
-        case 'display':
-            renderVehicles();
-            break;
-    }
-});
-// document.getElementById('vehicle-form').addEventListener('submit', handleSearch);
+        switch (requestType) {
+            case 'rent':
+                rentVehicle();
+                break;
+            case 'return':
+                returnVehicle();
+                break;
+            case 'sell':
+                sellVehicle();
+                break;
+            case 'display':
+                renderVehicles();
+                break;
+        }
+    });
 
-renderVehicles();
+// renderVehicles();

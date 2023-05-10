@@ -4,6 +4,16 @@ html
     body
         include ./nav.pug
         div(class='container')
+            h2(class='page-heading') Dealer dashboard
+            form(id='request-form' class='row py-4')
+                select(id='request-mode' name='request_mode' class='form-select')
+                    option(value='sell') Sell
+                input(
+                    id='request-button'
+                    type='button'
+                    class='btn btn-primary'
+                    value='Send request'
+                )
             form(id='add-vehicle-form' class='row py-4')
                 each value in addVehicleTextInputs
                     div(class='input-group flex-nowrap')
