@@ -31,6 +31,10 @@ app.get('/dealer', (req, res) => {
     });
 });
 
+app.get('/client', (req, res) => {
+    res.render('client');
+});
+
 app.listen(8000, () => {
     console.log('The server was started on port 8000');
     console.log('The server URL: http://localhost:8000/');
