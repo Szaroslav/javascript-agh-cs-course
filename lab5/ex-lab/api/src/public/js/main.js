@@ -58,7 +58,7 @@ const addItem = async item => {
         .catch(err => prettyLog(err, false));
 
     if (addedVehicle)
-        prettyLog(addedVehicle, true);
+        prettyLog('', true);
 
     return addedVehicle;
 };
@@ -69,7 +69,7 @@ const rentVehicle = async () => {
         .catch(err => prettyLog(err, false));
 
     if (rentedVehicle)
-        prettyLog(rentedVehicle, true);
+        prettyLog('', true);
 
     return rentedVehicle;
 };
@@ -80,7 +80,7 @@ const returnVehicle = async () => {
         .catch(err => prettyLog(err, false));
 
     if (returnedVehicle)
-        prettyLog(returnedVehicle, true);
+        prettyLog('', true);
 
     return returnedVehicle;
 };
@@ -91,7 +91,7 @@ const sellVehicle = async () => {
         .catch(err => prettyLog(err, false));
 
     if (soldVehicle)
-        prettyLog(soldVehicle, true);
+        prettyLog('', true);
 
     return soldVehicle;
 };
