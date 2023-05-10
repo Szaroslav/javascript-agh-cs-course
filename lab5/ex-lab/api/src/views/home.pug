@@ -3,3 +3,18 @@ html
     include ./head.pug
     body
         include ./nav.pug
+        main(class='container')
+            ul(class='vehicle-list cars-list row p-4')
+                each vehicle in vehicles
+                    li(class='col-lg-4 col-md-6 p-2')
+                        div(class='card')
+                            img(
+                                src=`http://localhost:8000/public/images/${vehicle.imageURL}`
+                                class='card-img-top'
+                                alt=vehicle.model
+                            )
+                            div(class='card-body')
+                                h5(class='card-title fw-bold')= vehicle.model 
+                                p(class='card-text')= vehicle.description 
+                                a(href='#' class='btn btn-primary') Read more
+        include ./body-scripts.pug

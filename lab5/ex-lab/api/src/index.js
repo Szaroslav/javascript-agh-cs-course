@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const vehicle = require('./routes/vehicle');
-const { init } = require('./conn');
+const { init, getItems } = require('./conn');
 
 const corsMiddleware = async (req, res, next) => {
     res.locals.header = {
@@ -20,8 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/vehicle', corsMiddleware, vehicle);
 
-app.get('/', (req, res) => {
-    res.render('home');
+app.get('/', async (req, res) => {
+    const vehicles = await getItems();
+    res.render('home', { vehicles: vehicles });
 });
 
 app.get('/dealer', (req, res) => {
