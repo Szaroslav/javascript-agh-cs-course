@@ -23,7 +23,7 @@ app.get('/', function (request, response) {
 app.all('/submit', function (req, res) {
     let name = req.method === 'GET' ? req.query.name : req.body.name;
     // console.log(req.body);
-    
+
     // Return the greeting in the format preferred by the WWW client
     switch (req.accepts(['html', 'text', 'json', 'xml'])) {
         case 'json':
@@ -36,6 +36,7 @@ app.all('/submit', function (req, res) {
         case 'xml':
             // Send the XML greeting
             name = name !== undefined ? encodeXML(name) : '';
+            console.log(name);
             res.type('application/xml');
             res.send(`<welcome>Hello '${name}'</welcome>`);
             console.log(`\x1B[32mThe server sent an XML document to the browser using the '${req.method}' method\x1B[0m`);

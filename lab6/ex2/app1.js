@@ -13,6 +13,7 @@ app.set('view engine', 'pug');
 app.locals.pretty = app.get('env') === 'development';
 /* ************************************************ */
 app.use(morgan('dev'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 /* ************************************************ */
 app.get('/', function (request, response) {

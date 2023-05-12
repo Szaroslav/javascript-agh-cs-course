@@ -58,15 +58,15 @@ html(lang='en')
                         console.log(`HTTP method ⟶\t\t${http_method}\nResponse type ⟶\t${response_type}\nInput data ⟶\t\t${name}`);
                         console.log('Response', xhr.response);
                         console.groupEnd();
-                        if(show_alert) {
+                        if (show_alert) {
                             let response = xhr.response;
                             switch (response_type) {
                                 case 'json':
                                     response = JSON.stringify(response);
                                     break;
                                 case 'document':
-                                    const serializer = new XMLSerializer();
-                                    response = serializer.serializeToString(response);
+                                    const tag = response.documentElement.nodeName;
+                                    response = `<${tag}>${response.documentElement.textContent}</${tag}>`;
                                     break;
                             }
 
@@ -88,7 +88,7 @@ html(lang='en')
                 // Configuration and execution of the (asynchronous) query to the web server
                 //--------------------------------------------------------------------------
                 xhr.responseType = response_type;  // Type of data received by the 'load' observer
-                xhr.open(http_method, `http://localhost:8000/submit${http_method === 'GET' ? `?name=${encodeURI(name)}` : ''}`, true);
+                xhr.open(http_method, `http://localhost:8000/submit${http_method === 'GET' ? `?name=${encodeURIComponent(name)}` : ''}`, true);
 
                 //****************************************************************************************
                 // What is the acceptable data type - the server part should return data of the given type
@@ -125,7 +125,7 @@ html(lang='en')
                         accept = 'application/xml';
                         break;
                 }
-                fetch(`http://localhost:8000/submit${http_method === 'GET' ? `?name=${encodeURI(name)}` : ''}`, {
+                fetch(`http://localhost:8000/submit${http_method === 'GET' ? `?name=${encodeURIComponent(name)}` : ''}`, {
                     method: http_method,
                     headers: {
                         //****************************************************************************************
@@ -153,10 +153,11 @@ html(lang='en')
                     }
                 })
                 .then(result => {
+                    result = typeof result !== 'object' ? decodeHtml(result) : result;
                     console.log(result);
                     console.groupEnd();   
                     if(show_alert) {
-                        window.alert(typeof result !== 'object' ? result : JSON.stringify(result));
+                        window.alert(typeof result === 'object' ? JSON.stringify(result) : result);
                     }
                     else {
                         results.set(`fetch ${http_method} ${response_type}`, result);
@@ -245,7 +246,7 @@ html(lang='en')
                 if(!test_executed && results.size === 12){
                     const expect = chai.expect; 
                     const parser = new DOMParser();
-                    const xml_document= parser.parseFromString("<welcome>Hello 'ą/?:@&=+$#'</welcome>","text/xml");
+                    const xml_document= parser.parseFromString("<welcome>Hello '&#x105;/?:@&amp;=+&#x24;#'</welcome>","text/xml"); // ą/?:@&=+$#
 
                     describe('AJAX requests', function() {
                         it(`Returns "Hello '${name}'" for requestAJAX('GET','text')`, function() {
