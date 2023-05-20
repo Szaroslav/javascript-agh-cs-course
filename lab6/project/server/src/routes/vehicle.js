@@ -2,9 +2,8 @@ const express = require('express');
 const { getItems, getItem, addItem, updateItem } = require('../conn');
 
 const router = express.Router();
-// router.use(express.json());
-// router.use(express.urlencoded({ extended: true }));
 
+// Rent or return helper function
 const rentOrReturn = async (rent, res) => {
     const logical_function = (rent ? v => !v : v => v);
     const query = {
@@ -24,11 +23,13 @@ const rentOrReturn = async (rent, res) => {
     }
 };
 
+// Get all items
 router.get('/', async (req, res) => {
     res.set(res.locals.header);
     res.status(200).json(await getItems());
 });
 
+// Insert a new item
 router.post('/', async (req, res) => {
     res.set(res.locals.header);
     console.log(req.body);
@@ -43,18 +44,21 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Rent a vehicle
 router.get('/rent', async (req, res) => {
     const { status } = await rentOrReturn(true, res);
     res.set(res.locals.header);
     res.status(status).send();
 });
 
+// Return a vehicle
 router.get('/return', async (req, res) => {
     const { status } = await rentOrReturn(false, res);
     res.set(res.locals.header);
     res.status(status).send();
 });
 
+// Sell a vehicle
 router.get('/sell', async (req, res) => {
     const query = {
         rented: false,
