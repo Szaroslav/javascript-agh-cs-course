@@ -30,36 +30,36 @@ router.get('/', async (req, res) => {
 });
 
 // Insert a new item
-router.post('/', async (req, res) => {
-    res.set(res.locals.header);
-    console.log(req.body);
+// router.post('/', async (req, res) => {
+//     res.set(res.locals.header);
+//     console.log(req.body);
 
-    if (!req.body || Object.keys(req.body).length === 0) {
-        console.error('Invalid request body');
-        res.status(400).send();
-    }
-    else {
-        await addItem(req.body);
-        res.status(200).json(req.body);
-    }
-});
+//     if (!req.body || Object.keys(req.body).length === 0) {
+//         console.error('Invalid request body');
+//         res.status(400).send();
+//     }
+//     else {
+//         await addItem(req.body);
+//         res.status(200).json(req.body);
+//     }
+// });
 
 // Rent a vehicle
-router.get('/rent', async (req, res) => {
+router.post('/', async (req, res) => {
     const { status } = await rentOrReturn(true, res);
     res.set(res.locals.header);
     res.status(status).send();
 });
 
 // Return a vehicle
-router.get('/return', async (req, res) => {
+router.put('/', async (req, res) => {
     const { status } = await rentOrReturn(false, res);
     res.set(res.locals.header);
     res.status(status).send();
 });
 
 // Sell a vehicle
-router.get('/sell', async (req, res) => {
+router.delete('/', async (req, res) => {
     const query = {
         rented: false,
         sold: false

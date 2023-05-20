@@ -16,26 +16,6 @@ const prettyLog = (message, isSuccess) => {
     );
 };
 
-const renderVehicle = data => {
-    if (!list)
-        return;
-
-    if (data && (!modelFilter || (new RegExp(modelFilter)).test(data.model))) {
-        list.innerHTML += `
-            <li class="col-lg-4 col-md-6 p-2">
-                <div class="card">
-                    <img src="./images/supra.png" class="card-img-top" alt="${data.model}" />
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">${data.model}</h5>
-                        <p class="card-text">${data.description}</p>
-                        <a href="#" class="btn btn-primary">Read more</a>
-                    </div>
-                </div>
-            </li>
-        `;
-    }
-};
-
 const renderVehicles = async () => {
     const vehicles = await fetch(`${API_URL}/vehicle`).then(res => res.json());
     list.innerHTML = '';

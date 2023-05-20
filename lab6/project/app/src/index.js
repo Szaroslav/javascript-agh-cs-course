@@ -25,19 +25,25 @@ app.get('/', asyncHandler(async (req, res) => {
             return res.json();
         });
     
-    res.render('home', { APPLICATION_URL: APPLICATION_URL, vehicles: vehicles, users: users });
+    res.render('home', {
+        APPLICATION_URL: APPLICATION_URL,
+        vehicles: vehicles,
+        rentedVehicles: vehicles.filter(vehicle => vehicle.rented),
+        soldVehicles: vehicles.filter(vehicle => vehicle.sold),
+        users: users
+    });
 }));
 
-app.get('/dealer', (req, res) => {
-    res.render('dealer', {
-        APPLICATION_URL: APPLICATION_URL,
-        addVehicleTextInputs: [ 'Manufacturer', 'Model', 'Year', 'Description' ]
-    });
-});
+// app.get('/dealer', (req, res) => {
+//     res.render('dealer', {
+//         APPLICATION_URL: APPLICATION_URL,
+//         addVehicleTextInputs: [ 'Manufacturer', 'Model', 'Year', 'Description' ]
+//     });
+// });
 
-app.get('/client', (req, res) => {
-    res.render('client', { APPLICATION_URL: APPLICATION_URL });
-});
+// app.get('/client', (req, res) => {
+//     res.render('client', { APPLICATION_URL: APPLICATION_URL });
+// });
 
 app.listen(PORT, () => {
     console.log(`The application was started on port ${PORT}`);
