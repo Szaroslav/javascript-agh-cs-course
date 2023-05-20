@@ -31,4 +31,12 @@ html
                             div(class='card')
                                 div(class='card-body')
                                     h5(class='card-title fw-bold m-0')= `${user.firstName} ${user.lastName}`
+            div(class='section p-4')
+                h2(class='heading p-2') Rented vehicles
+                ul(class='rented-vehicle-list list row')
+                    each user in users
+                        li(class='p-2')
+                            div(class='card')
+                                div(class='card-body')
+                                    h5(class='card-title fw-bold m-0')= `${user.firstName} ${user.lastName}`
         include ./body-scripts.pug
