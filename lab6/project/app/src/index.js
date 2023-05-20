@@ -18,8 +18,14 @@ app.get('/', asyncHandler(async (req, res) => {
                 throw Error('[Error] Couldn\'t get the vehicles');
             return res.json();
         });
+    const users = await fetch(`${SERVER_URL}/users`)
+        .then(res => {
+            if (!res.ok)
+                throw Error('[Error] Couldn\'t get the users');
+            return res.json();
+        });
     
-    res.render('home', { APPLICATION_URL: APPLICATION_URL, vehicles: vehicles });
+    res.render('home', { APPLICATION_URL: APPLICATION_URL, vehicles: vehicles, users: users });
 }));
 
 app.get('/dealer', (req, res) => {
