@@ -1,5 +1,6 @@
 const express = require('express');
 const vehicle = require('./routes/vehicle');
+const user = require('./routes/user');
 const { init } = require('./conn');
 
 const PORT = 8000;
@@ -17,6 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/vehicles', corsMiddleware, vehicle);
+app.use('/users', corsMiddleware, user);
 
 app.listen(PORT, () => {
     console.log(`The server was started on port ${PORT}`);
