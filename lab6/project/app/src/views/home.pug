@@ -4,17 +4,27 @@ html
     body
         include ./nav.pug
         main(class='container')
-            ul(class='vehicle-list cars-list row p-4')
-                each vehicle in vehicles
-                    li(class='col-lg-4 col-md-6 p-2')
-                        div(class='card')
-                            img(
-                                src=`${APPLICATION_URL}/public/images/${vehicle.imageURL}`
-                                class='card-img-top'
-                                alt=vehicle.model
-                            )
-                            div(class='card-body')
-                                h5(class='card-title fw-bold')= vehicle.model 
-                                p(class='card-text')= vehicle.description 
-                                a(href='#' class='btn btn-primary') Read more
+            div(class='section p-4')
+                h2(class='heading p-2') Vehicles
+                ul(class='vehicle-list list row')
+                    each vehicle in vehicles
+                        li(class='col-lg-4 col-md-6 p-2')
+                            div(class='card')
+                                img(
+                                    src=`${APPLICATION_URL}/public/images/${vehicle.imageURL}`
+                                    class='card-img-top'
+                                    alt=vehicle.model
+                                )
+                                div(class='card-body')
+                                    h5(class='card-title fw-bold')= vehicle.model 
+                                    p(class='card-text')= vehicle.description 
+                                    a(href='#' class='btn btn-primary') Read more
+            div(class='section p-4')
+                h2(class='heading p-2') Users
+                ul(class='user-list list row ')
+                    each user in users
+                        li(class='p-2')
+                            div(class='card')
+                                div(class='card-body')
+                                    h5(class='card-title fw-bold')= `${user.firstName} ${user.lastName}`
         include ./body-scripts.pug
