@@ -28,8 +28,8 @@ app.get('/', asyncHandler(async (req, res) => {
     res.render('home', {
         APPLICATION_URL: APPLICATION_URL,
         vehicles: vehicles,
-        rentedVehicles: vehicles.filter(vehicle => vehicle.rented),
-        soldVehicles: vehicles.filter(vehicle => vehicle.sold),
+        rentedVehicles: vehicles.filter(vehicle => vehicle.borrowers.length > 0),
+        soldVehicles: vehicles.filter(vehicle => vehicle.sellers.length > 0),
         users: users
     });
 }));

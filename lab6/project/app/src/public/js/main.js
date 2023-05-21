@@ -40,7 +40,7 @@ const setupRequest = body => {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: body
+        body: JSON.stringify(body)
     };
 };
 
@@ -48,13 +48,19 @@ const setupRequest = body => {
 
 const rentVehicle = async event => {
     const id = getItemId(event.target);
-    console.log({ vehicleId: id, ...userMockup });
+    console.log({
+        method: 'POST',
+        ...setupRequest({ vehicleId: id, ...userMockup })
+    });
     try {
-        const rentedVehicle = await fetch(`${API_URL}/vehicles`, {
+        const res = await fetch(`${API_URL}/vehicles`, {
             method: 'POST',
-            ...setupRequest({ id: id, ...userMockup })
-        }).then(res => res.json());
-        return rentedVehicle;
+            ...setupRequest({ vehicleId: id, ...userMockup })
+        });
+        if (!res.ok)
+            throw new Error('Not found');
+
+        return await res.json();
     }
     catch (error) {
         prettyLog(error, false);
