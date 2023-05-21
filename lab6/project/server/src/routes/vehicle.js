@@ -1,20 +1,22 @@
 const express = require('express');
 const { getItems, getItem, addItem, updateItem } = require('../conn');
+const { ObjectId } = require('mongodb');
 
 const router = express.Router();
 
 // Rent or return helper function
-const rentOrReturn = async (rent, res) => {
-    const logical_function = (rent ? v => !v : v => v);
+const rentOrReturn = async (rent, ids) => {
     const query = {
-        rented: logical_function(true),
-        sold: false
+        _id: ids.vehicleId
     };
-    const availableVehicle = await getItem(query);
+    const vehicle = await getItem(query);
 
-    if (availableVehicle) {
+    if (vehicle && vehicle.quantity - (vehicle.sellers.length + vehicle.borrowers.length) > 0) {
+        const pushData = {};
+        pushData[rent ? 'borrowers' : 'sellers'] = ids.userId;
+
         await updateItem(query, {
-            $set: { rented: logical_function(false) }
+            $push: pushData
         });
         return { status: 200 };
     }
@@ -46,7 +48,11 @@ router.get('/', async (req, res) => {
 
 // Rent a vehicle
 router.post('/', async (req, res) => {
-    const { status } = await rentOrReturn(true, res);
+    const { status } = await rentOrReturn(true, {
+        userId: req.body.userId,
+        vehicleId: req.body.vehicleId
+    });
+    console.log('wtf', res.locals.header);
     res.set(res.locals.header);
     res.status(status).send();
 });

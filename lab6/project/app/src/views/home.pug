@@ -18,11 +18,14 @@ html
                                             class='card-img-top'
                                             alt=vehicle.model
                                         )
-                                        div(class='vehicle-content')
+                                        div(class='vehicle-content' data-id=vehicle._id)
                                             h5(class='model fw-bold m-0 mt-2')= vehicle.model 
                                             p(class='manufacturer fw-bold')= vehicle.manufacturer
                                             p(class='quantity') Quantity: #{vehicle.quantity}
-                                            p(class='text-body-secondary')= vehicle.description 
+                                            p(class='text-body-secondary')= vehicle.description
+                                            div(class='button-container d-flex')
+                                                button(class='rent-button btn btn-primary btn-sm me-2' type='button') Rent
+                                                button(class='sell-button btn btn-primary btn-sm' type='button') Sell
             div(class='section p-4')
                 h2(class='heading p-2') Users
                 ul(class='user-list list row')
