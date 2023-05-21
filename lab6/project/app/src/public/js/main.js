@@ -48,10 +48,6 @@ const setupRequest = body => {
 
 const rentVehicle = async event => {
     const id = getItemId(event.target);
-    console.log({
-        method: 'POST',
-        ...setupRequest({ vehicleId: id, ...userMockup })
-    });
     try {
         const res = await fetch(`${API_URL}/vehicles`, {
             method: 'POST',
@@ -68,6 +64,41 @@ const rentVehicle = async event => {
     }
 };
 
+const returnVehicle = async event => {
+    const id = getItemId(event.target);
+    try {
+        const res = await fetch(`${API_URL}/vehicles`, {
+            method: 'PUT',
+            ...setupRequest({ vehicleId: id, ...userMockup })
+        });
+        if (!res.ok)
+            throw new Error('Not found');
+
+        return await res.json();
+    }
+    catch (error) {
+        prettyLog(error, false);
+        return null;
+    }
+};
+
+const sellVehicle = async event => {
+    const id = getItemId(event.target);
+    try {
+        const res = await fetch(`${API_URL}/vehicles`, {
+            method: 'DELETE',
+            ...setupRequest({ vehicleId: id, ...userMockup })
+        });
+        if (!res.ok)
+            throw new Error('Not found');
+
+        return await res.json();
+    }
+    catch (error) {
+        prettyLog(error, false);
+        return null;
+    }
+};
 
 // const rentVehicle = async () => {
 //     const rentedVehicle = await fetch(`${API_URL}/vehicle/rent`)
@@ -161,4 +192,12 @@ const rentVehicle = async event => {
 
 document.querySelectorAll('.rent-button').forEach(btn => {
     btn.addEventListener('click', rentVehicle);
+});
+
+document.querySelectorAll('.return-button').forEach(btn => {
+    btn.addEventListener('click', returnVehicle);
+});
+
+document.querySelectorAll('.sell-button').forEach(btn => {
+    btn.addEventListener('click', sellVehicle);
 });
