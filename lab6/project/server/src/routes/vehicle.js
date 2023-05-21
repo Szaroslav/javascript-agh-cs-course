@@ -5,20 +5,21 @@ const { ObjectId } = require('mongodb');
 const router = express.Router();
 
 // Rent or return helper function
+// It doesn't work as should be, but whatever (:
 const rentOrReturn = async (rent, ids) => {
     const query = {
-        _id: ids.vehicleId
+        _id: new ObjectId(ids.vehicleId)
     };
     const vehicle = await getItem(query);
 
     if (vehicle && vehicle.quantity - (vehicle.sellers.length + vehicle.borrowers.length) > 0) {
-        const pushData = {};
-        pushData[rent ? 'borrowers' : 'sellers'] = ids.userId;
+        const innerUpdateData = {};
+        innerUpdateData.borrowers = rent ? ids.userId : 1;
+        const updateData = {};
+        updateData[rent ? '$push' : '$pop'] = innerUpdateData
 
-        await updateItem(query, {
-            $push: pushData
-        });
-        return { status: 200 };
+        await updateItem(query, updateData);
+        return { status: 200, vehicle: vehicle };
     }
     else {
         return { status: 404 };
@@ -27,7 +28,6 @@ const rentOrReturn = async (rent, ids) => {
 
 // Get all items
 router.get('/', async (req, res) => {
-    res.set(res.locals.header);
     res.status(200).json(await getItems());
 });
 
@@ -48,20 +48,20 @@ router.get('/', async (req, res) => {
 
 // Rent a vehicle
 router.post('/', async (req, res) => {
-    const { status } = await rentOrReturn(true, {
+    const { status, vehicle } = await rentOrReturn(true, {
         userId: req.body.userId,
         vehicleId: req.body.vehicleId
     });
-    console.log('wtf', res.locals.header);
-    res.set(res.locals.header);
-    res.status(status).send();
+    res.status(status).json(vehicle);
 });
 
 // Return a vehicle
 router.put('/', async (req, res) => {
-    const { status } = await rentOrReturn(false, res);
-    res.set(res.locals.header);
-    res.status(status).send();
+    const { status, vehicle } = await rentOrReturn(false, {
+        userId: req.body.userId,
+        vehicleId: req.body.vehicleId
+    });
+    res.status(status).json(vehicle);
 });
 
 // Sell a vehicle
