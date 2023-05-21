@@ -67,19 +67,18 @@ router.put('/', async (req, res) => {
 // Sell a vehicle
 router.delete('/', async (req, res) => {
     const query = {
-        rented: false,
-        sold: false
+        _id: new ObjectId(req.body.vehicleId)
     };
-    const availableVehicle = await getItem(query);
+    const vehicle = await getItem(query);
 
-    if (availableVehicle) {
+    if (vehicle && vehicle.quantity - (vehicle.sellers.length + vehicle.borrowers.length) > 0) {
         await updateItem(query, {
-            $set: { sold: true }
+            $push: { sellers: req.body.userId }
         });
-        res.status(200).send();
+        return { status: 200, vehicle: vehicle };
     }
     else {
-        res.status(404).send();
+        return { status: 404 };
     }
 });
 

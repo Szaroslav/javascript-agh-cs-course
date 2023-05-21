@@ -26,6 +26,7 @@ html
                                             div(class='button-container d-flex')
                                                 button(class='rent-button btn btn-primary btn-sm me-2' type='button') Rent
                                                 button(class='sell-button btn btn-primary btn-sm' type='button') Sell
+            
             div(class='section p-4')
                 h2(class='heading p-2') Users
                 ul(class='user-list list row')
@@ -34,12 +35,27 @@ html
                             div(class='card')
                                 div(class='card-body')
                                     h5(class='card-title fw-bold m-0')= `${user.firstName} ${user.lastName}`
-            div(class='section p-4')
+            
+            div(id='rented-vehicle-container' class='section accordion p-4')
                 h2(class='heading p-2') Rented vehicles
-                ul(class='rented-vehicle-list list row')
-                    each user in users
-                        li(class='p-2')
-                            div(class='card')
-                                div(class='card-body')
-                                    h5(class='card-title fw-bold m-0')= `${user.firstName} ${user.lastName}`
+                ul(class='vehicle-list list row')
+                    each vehicle, i in rentedVehicles
+                        li(class='col-lg-4 col-md-6 p-2')
+                            div(class='accordion-item')
+                                button(class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target=`#rented-vehicle-${i}`)= vehicle.model
+                                div(id=`rented-vehicle-${i}` class='accordion-collapse collapse' data-bs-parent='#rented-vehicle-container')
+                                    div(class='accordion-body')
+                                        img(
+                                            src=`${APPLICATION_URL}/public/images/${vehicle.imageURL}`
+                                            class='card-img-top'
+                                            alt=vehicle.model
+                                        )
+                                        div(class='vehicle-content' data-id=vehicle._id)
+                                            h5(class='model fw-bold m-0 mt-2')= vehicle.model 
+                                            p(class='manufacturer fw-bold')= vehicle.manufacturer
+                                            p(class='quantity') Quantity: #{vehicle.quantity}
+                                            p(class='text-body-secondary')= vehicle.description
+                                            div(class='button-container d-flex')
+                                                button(class='return-button btn btn-primary btn-sm me-2' type='button') Return
+        
         include ./body-scripts.pug
