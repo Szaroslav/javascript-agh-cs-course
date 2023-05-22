@@ -1,0 +1,18 @@
+doctype html
+html
+    include ./head.pug
+    body
+        include ./nav.pug
+        div(class='container')
+            h2(class='page-heading') Client dashboard
+            form(id='request-form' class='row py-4')
+                select(id='request-mode' name='request_mode' class='form-select')
+                    option(value='rent') Rent
+                    option(value='return') Return 
+                input(
+                    id='request-button'
+                    type='button'
+                    class='btn btn-primary'
+                    value='Send request'
+                )
+        include ./body-scripts.pug
