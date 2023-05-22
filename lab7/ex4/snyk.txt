@@ -1,0 +1,31 @@
+app
+PS C:\Users\Jakub\Desktop\studia\4s\javascript\lab7\ex4\project\app> snyk test
+
+Testing C:\Users\Jakub\Desktop\studia\4s\javascript\lab7\ex4\project\app...
+
+Organization:      kuba.szaredko
+Package manager:   npm
+Target file:       package-lock.json
+Project name:      app
+Open source:       no
+Project path:      C:\Users\Jakub\Desktop\studia\4s\javascript\lab7\ex4\project\app
+Licenses:          enabled
+
+✔ Tested 97 dependencies for known issues, no vulnerable paths found.
+
+
+
+server
+PS C:\Users\Jakub\Desktop\studia\4s\javascript\lab7\ex4\project\server> snyk test
+
+Testing C:\Users\Jakub\Desktop\studia\4s\javascript\lab7\ex4\project\server...
+
+Organization:      kuba.szaredko
+Package manager:   npm
+Target file:       package-lock.json
+Project name:      server
+Open source:       no
+Project path:      C:\Users\Jakub\Desktop\studia\4s\javascript\lab7\ex4\project\server
+Licenses:          enabled
+
+✔ Tested 113 dependencies for known issues, no vulnerable paths found.

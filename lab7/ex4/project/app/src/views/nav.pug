@@ -1,0 +1,27 @@
+nav(class='navbar navbar-expand-md navbar-dark bg-dark')
+    div(class='container-fluid')
+        a(class='navbar-brand' href='#')
+            canvas(id='canvas' width='130' height='110')
+    button(
+        class='navbar-toggler'
+        type='button'
+        data-bs-toggle='collapse'
+        data-bs-target='#navbar'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
+    )
+        span(class='navbar-toggler-icon')
+
+    div(id='navbar' class='collapse navbar-collapse')
+        ul(class='navbar-nav me-auto mb-2 mb-md-0')
+            li(class='nav-item')
+                a(class='nav-link' href=`${APPLICATION_URL}/` aria-current='page') Home
+            li(class='nav-item')
+                a(class='nav-link' href=`${APPLICATION_URL}/dealer`) Dealer
+            li(class='nav-item')
+                a(class='nav-link' href=`${APPLICATION_URL}/client`) Client
+            li(class='nav-item')
+                a(class='nav-link' href='#') Link
+        form(class='d-flex' role='search')
+            input(class='form-control me-2' type='search' placeholder='Search' aria-label='Search') 
+            button(class='btn btn-primary' type='submit') Search
