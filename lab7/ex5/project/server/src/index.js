@@ -8,7 +8,12 @@ const PORT = 8000;
 const SERVER_URL = `http://localhost:${PORT}`;
 
 const app = express();
+app.disable('X-Powered-By');
 app.use(cors());
+app.use((req, res, next) => {
+    res.set('X-Content-Type-Options', 'nosniff');
+    next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/vehicles', vehicle);
