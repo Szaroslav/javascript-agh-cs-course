@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZAP Scanning Report</title>
 <link
-	href="2023-05-23-ZAP-Report-localhost/normalize/normalize.css" rel="stylesheet">
+	href="zap/normalize/normalize.css" rel="stylesheet">
 <link
-	href="2023-05-23-ZAP-Report-localhost/themes/original/main.css" rel="stylesheet">
+	href="zap/themes/original/main.css" rel="stylesheet">
 <link
-	href="2023-05-23-ZAP-Report-localhost/themes/original/colors.css" rel="stylesheet">
+	href="zap/themes/original/colors.css" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<h1>ZAP Scanning Report</h1>
 		<p>
 			<span>Generated with</span> <a href="https://zaproxy.org"><img
-				src="2023-05-23-ZAP-Report-localhost/zap32x32.png" alt="The ZAP logo" class="zap-logo">ZAP</a>
-			<span>on Tue 23 May 2023, at 01:10:04</span>
+				src="zap/zap32x32.png" alt="The ZAP logo" class="zap-logo">ZAP</a>
+			<span>on Thu 25 May 2023, at 14:18:31</span>
 		</p>
 	</header>
 
@@ -62,7 +62,7 @@
 							<li><a
 								href="#alerts--risk-2-confidence-2"><span>Risk</span>=<span
 									class="risk-level">Medium</span>, <span>Confidence</span>=<span
-									class="confidence-level">Medium</span> <span>(1)</span></a></li>
+									class="confidence-level">Medium</span> <span>(2)</span></a></li>
 							
 							<li><a
 								href="#alerts--risk-2-confidence-1"><span>Risk</span>=<span
@@ -127,6 +127,7 @@
 					
 					<p>The following sites were included:</p>
 					<ul class="sites-list">
+						<li><span class="site">http://localhost:8000</span></li>
 						<li><span class="site">http://localhost:2137</span></li>
 					</ul>
 					
@@ -225,12 +226,12 @@
 							<td><span>0</span><br> <span
 								class="additional-info-percentages">(0.0%)</span></td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(22.2%)</span></td>
 							<td><span>1</span><br> <span
-								class="additional-info-percentages">(12.5%)</span></td>
-							<td><span>1</span><br> <span
-								class="additional-info-percentages">(12.5%)</span></td>
-							<td><span>4</span><br> <span class="additional-info-percentages">(50.0%)</span></td>
+								class="additional-info-percentages">(11.1%)</span></td>
+							<td><span>5</span><br> <span class="additional-info-percentages">(55.6%)</span></td>
 						</tr>
 						<tr>
 							
@@ -240,10 +241,10 @@
 							<td><span>0</span><br> <span
 								class="additional-info-percentages">(0.0%)</span></td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
 							<td><span>0</span><br> <span
 								class="additional-info-percentages">(0.0%)</span></td>
-							<td><span>2</span><br> <span class="additional-info-percentages">(25.0%)</span></td>
+							<td><span>2</span><br> <span class="additional-info-percentages">(22.2%)</span></td>
 						</tr>
 						<tr>
 							
@@ -253,22 +254,22 @@
 							<td><span>0</span><br> <span
 								class="additional-info-percentages">(0.0%)</span></td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
 							<td><span>0</span><br> <span
 								class="additional-info-percentages">(0.0%)</span></td>
-							<td><span>2</span><br> <span class="additional-info-percentages">(25.0%)</span></td>
+							<td><span>2</span><br> <span class="additional-info-percentages">(22.2%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row">Total</th>
 							<td><span>0</span><br> <span
 								class="additional-info-percentages">(0.0%)</span></td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
-							<td><span>5</span><br> <span
-								class="additional-info-percentages">(62.5%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
+							<td><span>6</span><br> <span
+								class="additional-info-percentages">(66.7%)</span></td>
 							<td><span>1</span><br> <span
-								class="additional-info-percentages">(12.5%)</span></td>
-							<td><span>8</span><br> <span
+								class="additional-info-percentages">(11.1%)</span></td>
+							<td><span>9</span><br> <span
 								class="additional-info-percentages">(100%)</span></td>
 						</tr>
 					</tbody>
@@ -322,7 +323,21 @@
 					<tbody>
 						<tr>
 							<th scope="rowgroup"
-								rowspan="1">Site</th>
+								rowspan="2">Site</th>
+							<th scope="row">http://localhost:8000</th>
+							
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(1)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(1)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(1)</span></td>
+							
+						</tr>
+						<tr>
+							
 							<th scope="row">http://localhost:2137</th>
 							
 							<td><span>0</span><br> <span
@@ -360,63 +375,70 @@
 								href="#alert-type-0">Absence of Anti-CSRF Tokens</a></th>
 							<td class="risk-level">Medium</td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><a
 								href="#alert-type-1">CSP: Wildcard Directive</a></th>
 							<td class="risk-level">Medium</td>
-							<td><span>4</span><br> <span
-								class="additional-info-percentages">(50.0%)</span></td>
+							<td><span>5</span><br> <span
+								class="additional-info-percentages">(55.6%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><a
 								href="#alert-type-2">Content Security Policy (CSP) Header Not Set</a></th>
 							<td class="risk-level">Medium</td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><a
-								href="#alert-type-3">Missing Anti-clickjacking Header</a></th>
+								href="#alert-type-3">Cross-Domain Misconfiguration</a></th>
+							<td class="risk-level">Medium</td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(11.1%)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-4">Missing Anti-clickjacking Header</a></th>
 							<td class="risk-level">Medium</td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><a
-								href="#alert-type-4">Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</a></th>
+								href="#alert-type-5">Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</a></th>
 							<td class="risk-level">Low</td>
-							<td><span>10</span><br> <span
-								class="additional-info-percentages">(125.0%)</span></td>
+							<td><span>11</span><br> <span
+								class="additional-info-percentages">(122.2%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><a
-								href="#alert-type-5">X-Content-Type-Options Header Missing</a></th>
+								href="#alert-type-6">X-Content-Type-Options Header Missing</a></th>
 							<td class="risk-level">Low</td>
 							<td><span>6</span><br> <span
-								class="additional-info-percentages">(75.0%)</span></td>
+								class="additional-info-percentages">(66.7%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><a
-								href="#alert-type-6">Modern Web Application</a></th>
+								href="#alert-type-7">Modern Web Application</a></th>
 							<td class="risk-level">Informational</td>
 							<td><span>2</span><br> <span
-								class="additional-info-percentages">(25.0%)</span></td>
+								class="additional-info-percentages">(22.2%)</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><a
-								href="#alert-type-7">User Agent Fuzzer</a></th>
+								href="#alert-type-8">User Agent Fuzzer</a></th>
 							<td class="risk-level">Informational</td>
 							<td><span>48</span><br> <span
-								class="additional-info-percentages">(600.0%)</span></td>
+								class="additional-info-percentages">(533.3%)</span></td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
 							<th scope="row">Total</th>
 							<td></td>
-							<td>8</td>
+							<td>9</td>
 						</tr>
 					</tfoot>
 				</table>
@@ -439,6 +461,8 @@
 					</h3>
 					<ol>
 						
+						
+						
 						<li class="alerts--site-li">
 							<h4>
 								<span class="site">http://localhost:2137</span> <span>(2)</span>
@@ -453,7 +477,7 @@
 									<ol>
 										<li><details>
 												<summary>
-													<span class="request-method-n-url">GET http://localhost:2137/sitemap.xml</span>
+													<span class="request-method-n-url">GET http://localhost:2137/robots.txt</span>
 												</summary>
 												
 <table class="alerts-table">
@@ -489,9 +513,9 @@
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (209 bytes)</summary>
+				<summary>Request line and header section (208 bytes)</summary>
 				
-				<pre><code>GET http://localhost:2137/sitemap.xml HTTP/1.1
+				<pre><code>GET http://localhost:2137/robots.txt HTTP/1.1
 Host: localhost:2137
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
 Pragma: no-cache
@@ -518,8 +542,8 @@ X-Powered-By: Express
 Content-Security-Policy: default-src &#39;none&#39;
 X-Content-Type-Options: nosniff
 Content-Type: text/html; charset=utf-8
-Content-Length: 150
-Date: Mon, 22 May 2023 22:54:37 GMT
+Content-Length: 149
+Date: Thu, 25 May 2023 12:17:06 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -527,7 +551,7 @@ Keep-Alive: timeout=5
 				
 				
 			</details> <details class="response-body" open="open">
-				<summary>Response body (150 bytes)</summary>
+				<summary>Response body (149 bytes)</summary>
 				
 				<pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -536,7 +560,7 @@ Keep-Alive: timeout=5
 &lt;title&gt;Error&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;pre&gt;Cannot GET /sitemap.xml&lt;/pre&gt;
+&lt;pre&gt;Cannot GET /robots.txt&lt;/pre&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -573,7 +597,7 @@ Keep-Alive: timeout=5
 									<ol>
 										<li><details>
 												<summary>
-													<span class="request-method-n-url">GET http://localhost:2137/</span>
+													<span class="request-method-n-url">GET http://localhost:2137</span>
 												</summary>
 												
 <table class="alerts-table">
@@ -600,9 +624,9 @@ Keep-Alive: timeout=5
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (198 bytes)</summary>
+				<summary>Request line and header section (197 bytes)</summary>
 				
-				<pre><code>GET http://localhost:2137/ HTTP/1.1
+				<pre><code>GET http://localhost:2137 HTTP/1.1
 Host: localhost:2137
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
 Pragma: no-cache
@@ -629,7 +653,7 @@ X-Powered-By: Express
 Content-Type: text/html; charset=utf-8
 Content-Length: 7999
 ETag: W/&quot;1f3f-TUssbXuG6Yq6exPIP4DSgFJm6os&quot;
-Date: Mon, 22 May 2023 22:54:37 GMT
+Date: Thu, 25 May 2023 12:17:05 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -669,9 +693,135 @@ Keep-Alive: timeout=5
 					<h3>
 						<span>Risk</span>=<span
 							class="risk-level">Medium</span>, <span>Confidence</span>=<span
-							class="confidence-level">Medium</span> <span>(1)</span>
+							class="confidence-level">Medium</span> <span>(2)</span>
 					</h3>
 					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">http://localhost:8000</span> <span>(1)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-3">Cross-Domain Misconfiguration</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET http://localhost:8000/</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">OWASP_2021_A01</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control.html">OWASP_2017_A05</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>Web browser data loading may be possible, due to a Cross Origin Resource Sharing (CORS) misconfiguration on the web server</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Other info</th>
+		<td> 
+<p>The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (248 bytes)</summary>
+				
+				<pre><code>GET http://localhost:8000/ HTTP/1.1
+Host: localhost:8000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
+Pragma: no-cache
+Cache-Control: no-cache
+Referer: http://localhost:2137/public/js/main.js
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (304 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Security-Policy: default-src &#39;none&#39;
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 139
+Date: Thu, 25 May 2023 12:17:06 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (139 bytes)</summary>
+				
+				<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;Error&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;pre&gt;Cannot GET /&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Evidence</th>
+		<td><pre><code>Access-Control-Allow-Origin: *</code></pre></td>
+	</tr>
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Ensure that sensitive data is not available in an unauthenticated manner (using IP address white-listing, for instance).</p>
+
+<p>Configure the &quot;Access-Control-Allow-Origin&quot; HTTP header to a more restrictive set of domains, or remove all CORS headers entirely, to allow the web browser to enforce the Same Origin Policy (SOP) in a more restrictive manner.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
 						
 						<li class="alerts--site-li">
 							<h4>
@@ -682,12 +832,12 @@ Keep-Alive: timeout=5
 								<li>
 									<h5>
 										<a
-											href="#alert-type-3">Missing Anti-clickjacking Header</a> <span>(1)</span>
+											href="#alert-type-4">Missing Anti-clickjacking Header</a> <span>(1)</span>
 									</h5>
 									<ol>
 										<li><details>
 												<summary>
-													<span class="request-method-n-url">GET http://localhost:2137/</span>
+													<span class="request-method-n-url">GET http://localhost:2137</span>
 												</summary>
 												
 <table class="alerts-table">
@@ -717,9 +867,9 @@ Keep-Alive: timeout=5
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (198 bytes)</summary>
+				<summary>Request line and header section (197 bytes)</summary>
 				
-				<pre><code>GET http://localhost:2137/ HTTP/1.1
+				<pre><code>GET http://localhost:2137 HTTP/1.1
 Host: localhost:2137
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
 Pragma: no-cache
@@ -746,7 +896,7 @@ X-Powered-By: Express
 Content-Type: text/html; charset=utf-8
 Content-Length: 7999
 ETag: W/&quot;1f3f-TUssbXuG6Yq6exPIP4DSgFJm6os&quot;
-Date: Mon, 22 May 2023 22:54:37 GMT
+Date: Thu, 25 May 2023 12:17:05 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -795,6 +945,8 @@ Keep-Alive: timeout=5
 					</h3>
 					<ol>
 						
+						
+						
 						<li class="alerts--site-li">
 							<h4>
 								<span class="site">http://localhost:2137</span> <span>(1)</span>
@@ -809,7 +961,7 @@ Keep-Alive: timeout=5
 									<ol>
 										<li><details>
 												<summary>
-													<span class="request-method-n-url">GET http://localhost:2137/</span>
+													<span class="request-method-n-url">GET http://localhost:2137</span>
 												</summary>
 												
 <table class="alerts-table">
@@ -856,9 +1008,9 @@ Keep-Alive: timeout=5
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (198 bytes)</summary>
+				<summary>Request line and header section (197 bytes)</summary>
 				
-				<pre><code>GET http://localhost:2137/ HTTP/1.1
+				<pre><code>GET http://localhost:2137 HTTP/1.1
 Host: localhost:2137
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
 Pragma: no-cache
@@ -885,7 +1037,7 @@ X-Powered-By: Express
 Content-Type: text/html; charset=utf-8
 Content-Length: 7999
 ETag: W/&quot;1f3f-TUssbXuG6Yq6exPIP4DSgFJm6os&quot;
-Date: Mon, 22 May 2023 22:54:38 GMT
+Date: Thu, 25 May 2023 12:17:06 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -965,6 +1117,8 @@ Keep-Alive: timeout=5
 					</h3>
 					<ol>
 						
+						
+						
 						<li class="alerts--site-li">
 							<h4>
 								<span class="site">http://localhost:2137</span> <span>(2)</span>
@@ -974,12 +1128,12 @@ Keep-Alive: timeout=5
 								<li>
 									<h5>
 										<a
-											href="#alert-type-4">Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</a> <span>(1)</span>
+											href="#alert-type-5">Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</a> <span>(1)</span>
 									</h5>
 									<ol>
 										<li><details>
 												<summary>
-													<span class="request-method-n-url">GET http://localhost:2137/sitemap.xml</span>
+													<span class="request-method-n-url">GET http://localhost:2137/robots.txt</span>
 												</summary>
 												
 <table class="alerts-table">
@@ -1009,9 +1163,9 @@ Keep-Alive: timeout=5
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (209 bytes)</summary>
+				<summary>Request line and header section (208 bytes)</summary>
 				
-				<pre><code>GET http://localhost:2137/sitemap.xml HTTP/1.1
+				<pre><code>GET http://localhost:2137/robots.txt HTTP/1.1
 Host: localhost:2137
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
 Pragma: no-cache
@@ -1038,8 +1192,8 @@ X-Powered-By: Express
 Content-Security-Policy: default-src &#39;none&#39;
 X-Content-Type-Options: nosniff
 Content-Type: text/html; charset=utf-8
-Content-Length: 150
-Date: Mon, 22 May 2023 22:54:37 GMT
+Content-Length: 149
+Date: Thu, 25 May 2023 12:17:06 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -1047,7 +1201,7 @@ Keep-Alive: timeout=5
 				
 				
 			</details> <details class="response-body" open="open">
-				<summary>Response body (150 bytes)</summary>
+				<summary>Response body (149 bytes)</summary>
 				
 				<pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -1056,7 +1210,7 @@ Keep-Alive: timeout=5
 &lt;title&gt;Error&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;pre&gt;Cannot GET /sitemap.xml&lt;/pre&gt;
+&lt;pre&gt;Cannot GET /robots.txt&lt;/pre&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -1085,12 +1239,12 @@ Keep-Alive: timeout=5
 								<li>
 									<h5>
 										<a
-											href="#alert-type-5">X-Content-Type-Options Header Missing</a> <span>(1)</span>
+											href="#alert-type-6">X-Content-Type-Options Header Missing</a> <span>(1)</span>
 									</h5>
 									<ol>
 										<li><details>
 												<summary>
-													<span class="request-method-n-url">GET http://localhost:2137/</span>
+													<span class="request-method-n-url">GET http://localhost:2137/public/css/main.css</span>
 												</summary>
 												
 <table class="alerts-table">
@@ -1124,13 +1278,14 @@ Keep-Alive: timeout=5
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (198 bytes)</summary>
+				<summary>Request line and header section (249 bytes)</summary>
 				
-				<pre><code>GET http://localhost:2137/ HTTP/1.1
+				<pre><code>GET http://localhost:2137/public/css/main.css HTTP/1.1
 Host: localhost:2137
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
 Pragma: no-cache
 Cache-Control: no-cache
+Referer: http://localhost:2137
 
 </code></pre>
 				
@@ -1146,24 +1301,83 @@ Cache-Control: no-cache
 	<tr>
 		<th scope="row">Response</th>
 		<td><details open="open">
-				<summary>Status line and header section (232 bytes)</summary>
+				<summary>Status line and header section (315 bytes)</summary>
 				
 				<pre><code>HTTP/1.1 200 OK
 X-Powered-By: Express
-Content-Type: text/html; charset=utf-8
-Content-Length: 7999
-ETag: W/&quot;1f3f-TUssbXuG6Yq6exPIP4DSgFJm6os&quot;
-Date: Mon, 22 May 2023 22:54:37 GMT
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Mon, 22 May 2023 14:00:40 GMT
+ETag: W/&quot;376-18843c31e29&quot;
+Content-Type: text/css; charset=UTF-8
+Content-Length: 886
+Date: Thu, 25 May 2023 12:17:06 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
 </code></pre>
 				
 				
-			</details> <details class="response-body">
-				<summary>Response body (7999 bytes)</summary>
+			</details> <details class="response-body" open="open">
+				<summary>Response body (886 bytes)</summary>
 				
-				<pre><code>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Carsh&lt;/title&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE-Edge&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost:2137/public/css/main.css&quot;&gt;&lt;/head&gt;&lt;body&gt;&lt;nav class=&quot;navbar navbar-expand-md navbar-dark bg-dark&quot;&gt;&lt;div class=&quot;container-fluid&quot;&gt;&lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;&lt;canvas id=&quot;canvas&quot; width=&quot;130&quot; height=&quot;110&quot;&gt;&lt;/canvas&gt;&lt;/a&gt;&lt;/div&gt;&lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#navbar&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;&lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;&lt;/button&gt;&lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbar&quot;&gt;&lt;ul class=&quot;navbar-nav me-auto mb-2 mb-md-0&quot;&gt;&lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;http://localhost:2137/&quot; aria-current=&quot;page&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;http://localhost:2137/dealer&quot;&gt;Dealer&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;http://localhost:2137/client&quot;&gt;Client&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;nav-item&quot;&gt;&lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;form class=&quot;d-flex&quot; role=&quot;search&quot;&gt;&lt;input class=&quot;form-control me-2&quot; type=&quot;search&quot; placeholder=&quot;Search&quot; aria-label=&quot;Search&quot;&gt;&lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;Search&lt;/button&gt;&lt;/form&gt;&lt;/div&gt;&lt;/nav&gt;&lt;main class=&quot;container&quot;&gt;&lt;div class=&quot;section accordion p-4&quot; id=&quot;vehicle-container&quot;&gt;&lt;h2 class=&quot;heading p-2&quot;&gt;Vehicles&lt;/h2&gt;&lt;ul class=&quot;vehicle-list list row&quot;&gt;&lt;li class=&quot;col-lg-4 col-md-6 p-2&quot;&gt;&lt;div class=&quot;accordion-item&quot;&gt;&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#vehicle-0&quot;&gt;A4&lt;/button&gt;&lt;div class=&quot;accordion-collapse collapse&quot; id=&quot;vehicle-0&quot; data-bs-parent=&quot;#vehicle-container&quot;&gt;&lt;div class=&quot;accordion-body&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://localhost:2137/public/images/supra.png&quot; alt=&quot;A4&quot;&gt;&lt;div class=&quot;vehicle-content&quot; data-id=&quot;64580ce42482db0f32c74b63&quot;&gt;&lt;h5 class=&quot;model fw-bold m-0 mt-2&quot;&gt;A4&lt;/h5&gt;&lt;p class=&quot;manufacturer fw-bold&quot;&gt;Audi&lt;/p&gt;&lt;p class=&quot;quantity&quot;&gt;Quantity: 10&lt;/p&gt;&lt;p class=&quot;text-body-secondary&quot;&gt;Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam dignissimos harum dicta debitis excepturi molestias distinctio, minima iure? Eius, quae. Laudantium dolor eveniet iusto deleniti quasi cum, incidunt odio?&lt;/p&gt;&lt;div class=&quot;button-container d-flex&quot;&gt;&lt;button class=&quot;rent-button btn btn-primary btn-sm me-2&quot; type=&quot;button&quot;&gt;Rent&lt;/button&gt;&lt;button class=&quot;sell-button btn btn-primary btn-sm&quot; type=&quot;button&quot;&gt;Sell&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=&quot;col-lg-4 col-md-6 p-2&quot;&gt;&lt;div class=&quot;accordion-item&quot;&gt;&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#vehicle-1&quot;&gt;A6&lt;/button&gt;&lt;div class=&quot;accordion-collapse collapse&quot; id=&quot;vehicle-1&quot; data-bs-parent=&quot;#vehicle-container&quot;&gt;&lt;div class=&quot;accordion-body&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://localhost:2137/public/images/supra.png&quot; alt=&quot;A6&quot;&gt;&lt;div class=&quot;vehicle-content&quot; data-id=&quot;64580ce42482db0f32c74b64&quot;&gt;&lt;h5 class=&quot;model fw-bold m-0 mt-2&quot;&gt;A6&lt;/h5&gt;&lt;p class=&quot;manufacturer fw-bold&quot;&gt;Audi&lt;/p&gt;&lt;p class=&quot;quantity&quot;&gt;Quantity: 4&lt;/p&gt;&lt;p class=&quot;text-body-secondary&quot;&gt;&lt;/p&gt;&lt;div class=&quot;button-container d-flex&quot;&gt;&lt;button class=&quot;rent-button btn btn-primary btn-sm me-2&quot; type=&quot;button&quot;&gt;Rent&lt;/button&gt;&lt;button class=&quot;sell-button btn btn-primary btn-sm&quot; type=&quot;button&quot;&gt;Sell&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=&quot;col-lg-4 col-md-6 p-2&quot;&gt;&lt;div class=&quot;accordion-item&quot;&gt;&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#vehicle-2&quot;&gt;A7&lt;/button&gt;&lt;div class=&quot;accordion-collapse collapse&quot; id=&quot;vehicle-2&quot; data-bs-parent=&quot;#vehicle-container&quot;&gt;&lt;div class=&quot;accordion-body&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://localhost:2137/public/images/supra.png&quot; alt=&quot;A7&quot;&gt;&lt;div class=&quot;vehicle-content&quot; data-id=&quot;64580ce42482db0f32c74b65&quot;&gt;&lt;h5 class=&quot;model fw-bold m-0 mt-2&quot;&gt;A7&lt;/h5&gt;&lt;p class=&quot;manufacturer fw-bold&quot;&gt;Audi&lt;/p&gt;&lt;p class=&quot;quantity&quot;&gt;Quantity: 2&lt;/p&gt;&lt;p class=&quot;text-body-secondary&quot;&gt;&lt;/p&gt;&lt;div class=&quot;button-container d-flex&quot;&gt;&lt;button class=&quot;rent-button btn btn-primary btn-sm me-2&quot; type=&quot;button&quot;&gt;Rent&lt;/button&gt;&lt;button class=&quot;sell-button btn btn-primary btn-sm&quot; type=&quot;button&quot;&gt;Sell&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=&quot;col-lg-4 col-md-6 p-2&quot;&gt;&lt;div class=&quot;accordion-item&quot;&gt;&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#vehicle-3&quot;&gt;A8&lt;/button&gt;&lt;div class=&quot;accordion-collapse collapse&quot; id=&quot;vehicle-3&quot; data-bs-parent=&quot;#vehicle-container&quot;&gt;&lt;div class=&quot;accordion-body&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://localhost:2137/public/images/supra.png&quot; alt=&quot;A8&quot;&gt;&lt;div class=&quot;vehicle-content&quot; data-id=&quot;64580ce42482db0f32c74b66&quot;&gt;&lt;h5 class=&quot;model fw-bold m-0 mt-2&quot;&gt;A8&lt;/h5&gt;&lt;p class=&quot;manufacturer fw-bold&quot;&gt;Audi&lt;/p&gt;&lt;p class=&quot;quantity&quot;&gt;Quantity: 0&lt;/p&gt;&lt;p class=&quot;text-body-secondary&quot;&gt;Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam dignissimos harum dicta debitis excepturi molestias distinctio, minima iure? Eius, quae. Laudantium dolor eveniet iusto deleniti quasi cum, incidunt odio?&lt;/p&gt;&lt;div class=&quot;button-container d-flex&quot;&gt;&lt;button class=&quot;rent-button btn btn-primary btn-sm me-2&quot; type=&quot;button&quot;&gt;Rent&lt;/button&gt;&lt;button class=&quot;sell-button btn btn-primary btn-sm&quot; type=&quot;button&quot;&gt;Sell&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=&quot;col-lg-4 col-md-6 p-2&quot;&gt;&lt;div class=&quot;accordion-item&quot;&gt;&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#vehicle-4&quot;&gt;Astra&lt;/button&gt;&lt;div class=&quot;accordion-collapse collapse&quot; id=&quot;vehicle-4&quot; data-bs-parent=&quot;#vehicle-container&quot;&gt;&lt;div class=&quot;accordion-body&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://localhost:2137/public/images/supra.png&quot; alt=&quot;Astra&quot;&gt;&lt;div class=&quot;vehicle-content&quot; data-id=&quot;64580ce42482db0f32c74b67&quot;&gt;&lt;h5 class=&quot;model fw-bold m-0 mt-2&quot;&gt;Astra&lt;/h5&gt;&lt;p class=&quot;manufacturer fw-bold&quot;&gt;Opel&lt;/p&gt;&lt;p class=&quot;quantity&quot;&gt;Quantity: 32&lt;/p&gt;&lt;p class=&quot;text-body-secondary&quot;&gt;&lt;/p&gt;&lt;div class=&quot;button-container d-flex&quot;&gt;&lt;button class=&quot;rent-button btn btn-primary btn-sm me-2&quot; type=&quot;button&quot;&gt;Rent&lt;/button&gt;&lt;button class=&quot;sell-button btn btn-primary btn-sm&quot; type=&quot;button&quot;&gt;Sell&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;li class=&quot;col-lg-4 col-md-6 p-2&quot;&gt;&lt;div class=&quot;accordion-item&quot;&gt;&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#vehicle-5&quot;&gt;Passat&lt;/button&gt;&lt;div class=&quot;accordion-collapse collapse&quot; id=&quot;vehicle-5&quot; data-bs-parent=&quot;#vehicle-container&quot;&gt;&lt;div class=&quot;accordion-body&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://localhost:2137/public/images/supra.png&quot; alt=&quot;Passat&quot;&gt;&lt;div class=&quot;vehicle-content&quot; data-id=&quot;64580ce42482db0f32c74b68&quot;&gt;&lt;h5 class=&quot;model fw-bold m-0 mt-2&quot;&gt;Passat&lt;/h5&gt;&lt;p class=&quot;manufacturer fw-bold&quot;&gt;Volkswagen&lt;/p&gt;&lt;p class=&quot;quantity&quot;&gt;Quantity: 101&lt;/p&gt;&lt;p class=&quot;text-body-secondary&quot;&gt;Lorem ipsum. 2000 for the win!&lt;/p&gt;&lt;div class=&quot;button-container d-flex&quot;&gt;&lt;button class=&quot;rent-button btn btn-primary btn-sm me-2&quot; type=&quot;button&quot;&gt;Rent&lt;/button&gt;&lt;button class=&quot;sell-button btn btn-primary btn-sm&quot; type=&quot;button&quot;&gt;Sell&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div class=&quot;section p-4&quot;&gt;&lt;h2 class=&quot;heading p-2&quot;&gt;Users&lt;/h2&gt;&lt;ul class=&quot;user-list list row&quot;&gt;&lt;li class=&quot;p-2&quot;&gt;&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-body&quot;&gt;&lt;h5 class=&quot;card-title fw-bold m-0&quot;&gt;Jakub Szewczyk&lt;/h5&gt;&lt;/div&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div class=&quot;section accordion p-4&quot; id=&quot;rented-vehicle-container&quot;&gt;&lt;h2 class=&quot;heading p-2&quot;&gt;Rented vehicles&lt;/h2&gt;&lt;ul class=&quot;vehicle-list list row&quot;&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/main&gt;&lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;&lt;script src=&quot;http://localhost:2137/public/js/logotype.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;http://localhost:2137/public/js/main.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+				<pre><code>.list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.my-card {
+    animation: card-anim 6s infinite;
+    animation-play-state: paused;
+}
+
+.my-card:hover {
+    animation-play-state: running;
+}
+
+.page-heading {
+    padding: 1rem 0;
+}
+
+#navbar input[type=&#39;search&#39;] {
+    min-width: 150px;
+}
+
+#add-vehicle-form, #request-form {
+    gap: .5rem;
+}
+
+#add-vehicle-form .input-group-text {
+    width: 230px;
+}
+
+canvas {
+    height: 48px;
+}
+
+footer {
+    background-color: #f0f0f0;
+}
+
+@keyframes card-anim {
+    0% {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+
+    33.3% {
+        transform: rotateX(0) rotateY(0) rotateZ(180deg);
+    }
+
+    66.6% {
+        transform: rotateX(0) rotateY(180deg) rotateZ(180deg);
+    }
+
+    100% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+    }
+}
+</code></pre>
 				
 				
 			</details></td>
@@ -1209,6 +1423,8 @@ Keep-Alive: timeout=5
 					</h3>
 					<ol>
 						
+						
+						
 						<li class="alerts--site-li">
 							<h4>
 								<span class="site">http://localhost:2137</span> <span>(2)</span>
@@ -1218,12 +1434,12 @@ Keep-Alive: timeout=5
 								<li>
 									<h5>
 										<a
-											href="#alert-type-6">Modern Web Application</a> <span>(1)</span>
+											href="#alert-type-7">Modern Web Application</a> <span>(1)</span>
 									</h5>
 									<ol>
 										<li><details>
 												<summary>
-													<span class="request-method-n-url">GET http://localhost:2137/</span>
+													<span class="request-method-n-url">GET http://localhost:2137</span>
 												</summary>
 												
 <table class="alerts-table">
@@ -1250,9 +1466,9 @@ Keep-Alive: timeout=5
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (198 bytes)</summary>
+				<summary>Request line and header section (197 bytes)</summary>
 				
-				<pre><code>GET http://localhost:2137/ HTTP/1.1
+				<pre><code>GET http://localhost:2137 HTTP/1.1
 Host: localhost:2137
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0
 Pragma: no-cache
@@ -1279,7 +1495,7 @@ X-Powered-By: Express
 Content-Type: text/html; charset=utf-8
 Content-Length: 7999
 ETag: W/&quot;1f3f-TUssbXuG6Yq6exPIP4DSgFJm6os&quot;
-Date: Mon, 22 May 2023 22:54:37 GMT
+Date: Thu, 25 May 2023 12:17:05 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -1315,7 +1531,7 @@ Keep-Alive: timeout=5
 								<li>
 									<h5>
 										<a
-											href="#alert-type-7">User Agent Fuzzer</a> <span>(1)</span>
+											href="#alert-type-8">User Agent Fuzzer</a> <span>(1)</span>
 									</h5>
 									<ol>
 										<li><details>
@@ -1342,14 +1558,14 @@ Keep-Alive: timeout=5
 	<tr>
 		<th scope="row">Request</th>
 		<td><details open="open">
-				<summary>Request line and header section (207 bytes)</summary>
+				<summary>Request line and header section (206 bytes)</summary>
 				
 				<pre><code>GET http://localhost:2137/public HTTP/1.1
 Host: localhost:2137
 user-agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)
 Pragma: no-cache
 Cache-Control: no-cache
-Referer: http://localhost:2137/
+Referer: http://localhost:2137
 
 </code></pre>
 				
@@ -1373,7 +1589,7 @@ Content-Security-Policy: default-src &#39;none&#39;
 X-Content-Type-Options: nosniff
 Content-Type: text/html; charset=utf-8
 Content-Length: 146
-Date: Mon, 22 May 2023 22:56:19 GMT
+Date: Thu, 25 May 2023 12:17:30 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -1557,6 +1773,39 @@ Keep-Alive: timeout=5
 					</li>
 					<li
 						id="alert-type-3">
+						<h4>Cross-Domain Misconfiguration</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10098/">Cross-Domain Misconfiguration</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/264.html">264</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>14</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://vulncat.fortify.com/en/detail?id=desc.config.dotnet.html5_overly_permissive_cors_policy">https://vulncat.fortify.com/en/detail?id=desc.config.dotnet.html5_overly_permissive_cors_policy</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li
+						id="alert-type-4">
 						<h4>Missing Anti-clickjacking Header</h4>
 						<table class="alert-types-table">
 							<tr>
@@ -1589,7 +1838,7 @@ Keep-Alive: timeout=5
 						</table>
 					</li>
 					<li
-						id="alert-type-4">
+						id="alert-type-5">
 						<h4>Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s)</h4>
 						<table class="alert-types-table">
 							<tr>
@@ -1624,7 +1873,7 @@ Keep-Alive: timeout=5
 						</table>
 					</li>
 					<li
-						id="alert-type-5">
+						id="alert-type-6">
 						<h4>X-Content-Type-Options Header Missing</h4>
 						<table class="alert-types-table">
 							<tr>
@@ -1659,7 +1908,7 @@ Keep-Alive: timeout=5
 						</table>
 					</li>
 					<li
-						id="alert-type-6">
+						id="alert-type-7">
 						<h4>Modern Web Application</h4>
 						<table class="alert-types-table">
 							<tr>
@@ -1677,7 +1926,7 @@ Keep-Alive: timeout=5
 						</table>
 					</li>
 					<li
-						id="alert-type-7">
+						id="alert-type-8">
 						<h4>User Agent Fuzzer</h4>
 						<table class="alert-types-table">
 							<tr>

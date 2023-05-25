@@ -12,6 +12,12 @@ class Application {
 
     constructor() {
         this.app = express();
+        this.app.disable('X-Powered-By');
+        this.app.use((req: Request, res: Response, next: NextFunction) => {
+            res.set('Content-Security-Policy', 'default-src *');
+            res.set('X-Content-Type-Options', 'nosniff');
+            next();
+        });
         this.app.set('views', path.join(__dirname, 'views'));
         this.app.set('view engine', 'pug');
         this.app.use('/public', express.static(path.join(__dirname, 'public')));
