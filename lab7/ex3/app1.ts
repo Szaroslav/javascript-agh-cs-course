@@ -17,7 +17,7 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 router.get("/", async (ctx) => {
-    await ctx.render('index.ejs' ,{ data: { title: 'Oak' } });
+    await ctx.render('index.ejs', { data: { title: 'Oak' } });
 });
 
 router.all('/submit', async function (ctx) {
