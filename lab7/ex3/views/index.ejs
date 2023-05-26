@@ -239,17 +239,47 @@
                     </th>
                 </tr>
                 <tr>
+                    <% methods = ['GET', 'POST'] %>
+                    <% types = ['text', 'json', 'document'] %>
                     <th>AJAX</th>
-                    <!-- <% ['GET', 'POST'].forEach(method => {%>
+                    <% methods.forEach(method => { %>
                         <td>
-                            <% ['text', 'json', 'document'].forEach(type => { %>
-                                <button onclick="console.clear(); requestAJAX('<%= method =%>', '<%= type =%>', getName('<%= method =%>'))">
-                                    <%= method =%>
+                            <% types.forEach(type => { %>
+                                <button onclick="
+                                    console.clear();
+                                    requestAJAX(<%= `'${method}', '${type}', getName('${method}')`; %>))
+                                ">
+                                    <%= type; %>
                                 </button>
-                        </td> -->
+                            <% }); %>
+                        </td>
+                    <% }); %>
+                    <!-- <td>
+                        <button onclick="console.clear(); requestAJAX('GET', 'text', getName('GET'))">
+                            GET
+                        </button>
+                        <button onclick="console.clear(); requestAJAX('GET', 'json', getName('GET'))">
+                            GET
+                        </button>
+                        <button onclick="console.clear(); requestAJAX('GET', 'document', getName('GET'))">
+                            GET
+                        </button>
+                    </td> -->
                 </tr>
                 <tr>
                     <th>Fetch API</th>
+                    <% methods.forEach(method => { %>
+                        <td>
+                            <% types.forEach(type => { %>
+                                <button onclick="
+                                    console.clear();
+                                    requestFetchAPI(<%= `'${method}', '${type}', getName('${method}')`; %>))
+                                ">
+                                    <%= type; %>
+                                </button>
+                            <% }); %>
+                        </td>
+                    <% }); %>
                 </tr>
             </table>
             <input id="city" name="city" type="text" placeholder="City">
@@ -272,80 +302,6 @@
                     }
                 })
             };
-        </script>
-        <script class="mocha-exec">
-             //****************************************************************************************
-            // Unit tests
-            //****************************************************************************************
-            var results = new Map();
-            var received = new Event('received');
-            var test_executed = false;
-
-            function decodeHtml(html) {
-                var txt = document.createElement("textarea");
-                txt.innerHTML = html;
-
-                return txt.value;
-            }
-
-            addEventListener('received', (e) => {
-                if(!test_executed && results.size === 12){
-                    const expect = chai.expect; 
-                    const parser = new DOMParser();
-                    const xml_document= parser.parseFromString("<welcome>Hello '&#x105;/?:@&amp;=+&#x24;#'</welcome>","text/xml"); // ą/?:@&=+$#
-
-                    describe('AJAX requests', function() {
-                        it(`Returns "Hello '${name}'" for requestAJAX('GET','text')`, function() {
-                            expect(results.get('ajax GET text')).to.equal(`Hello '${name}'`);
-                        });
-                        it(`Returns "Hello '${name}'" for requestAJAX('GET','json')`, function() {
-                            expect(results.get('ajax GET json')).to.eql({welcome: `Hello '${name}'`});
-                        });
-                        it(`Returns "Hello '${name}'" for requestAJAX('GET','document')`, function() {
-                            expect(results.get('ajax GET document').documentElement.firstChild.data).to.equal(xml_document.documentElement.firstChild.data);
-                        });
-                        it(`Returns "Hello '${name}'" for requestAJAX('POST','text')`, function() {
-                            expect(results.get('ajax POST text')).to.equal(`Hello '${name}'`);
-                        });
-                        it(`Returns "Hello '${name}'" for requestAJAX('POST','json')`, function() {
-                            expect(results.get('ajax POST json')).to.eql({welcome: `Hello '${name}'`});
-                        });
-                        it(`Returns "Hello '${name}'" for requestAJAX('POST','document')`, function() {
-                            expect(results.get('ajax POST document').documentElement.firstChild.data).to.equal(xml_document.documentElement.firstChild.data);
-                        });
-                    });
-            
-                    describe('Fetch API requests', function() {   
-                        it(`Returns "Hello '${name}'" for requestFetchAPI('GET','text')`, async function() {
-                            const result  = await results.get('fetch GET text')
-                            expect(result).to.equal(`Hello '${name}'`);
-                        });
-                        it(`Returns "Hello '${name}'" for requestFetchAPI('GET','json')`, async function() {
-                            const result  = await results.get('fetch GET json')
-                            expect(result).to.eql({welcome: `Hello '${name}'`});
-                        });   
-                        it(`Returns "Hello '${name}'" for requestFetchAPI('GET','xml')`, async function() {
-                            const result  = await results.get('fetch GET xml');
-                            expect(decodeHtml(result)).to.equal(`<welcome>Hello '${name}'</welcome>`);
-                        }); 
-                        it(`Returns "Hello '${name}'" for requestFetchAPI('POST','text')`, async function() {
-                            const result  = await results.get('fetch POST text')
-                            expect(result).to.equal(`Hello '${name}'`);                   
-                        });
-                        it(`Returns "Hello '${name}'" for requestFetchAPI('POST','json')`, async function() {
-                            const result  = await results.get('fetch POST json')
-                            expect(result).to.eql({welcome: `Hello '${name}'`});
-                        });   
-                        it(`Returns "Hello '${name}'" for requestFetchAPI('POST','xml')`, async function() {
-                            const result  = await results.get('fetch POST xml');
-                            expect(decodeHtml(result)).to.equal(`<welcome>Hello '${name}'</welcome>`);
-                        });    
-                    });     
-                    
-                    mocha.run();
-                    test_executed = true;
-                }
-            });
         </script>
     </body>
 </html>
