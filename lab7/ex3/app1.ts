@@ -1,5 +1,5 @@
 // Requiring modules 
-import { Application, Router, Status, send } from "https://deno.land/x/oak@v12.5.0/mod.ts";       
+import { Application, Router, Request, send } from "https://deno.land/x/oak@v12.5.0/mod.ts";       
 import { dejsEngine, oakAdapter, viewEngine } from "https://deno.land/x/view_engine@v10.6.0/mod.ts";
 // Initiate app
 const app = new Application();
@@ -17,15 +17,18 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 router.get("/", async (ctx) => {
-    await ctx.render('index.ejs' ,{ data: { msg: 'World' } });
+    await ctx.render('index.ejs' ,{ data: { title: 'Oak' } });
 });
 
 router.all('/submit', async function (ctx) {
-    if (!ctx.request.hasBody) {
-        ctx.throw(Status.BadRequest, "Bad Request");
+    let name;
+    if (ctx.request.method === 'POST') {
+        console.log(await ctx.request.body().value.get('name'));
+        // name = await ctx.request.body().value.get('name');
     }
-
-    const { name } = ctx.request.body;
+    else if (ctx.request.method === 'GET') {
+        name = ctx.request.url.searchParams.get('name');
+    }
     
     // Return the greeting in the format preferred by the WWW client
     switch (ctx.request.headers.get('Accept').match(/\/.*$/).slice(1)) {
